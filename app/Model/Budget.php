@@ -7,12 +7,31 @@
  */
 
 namespace App;
-
+use App\SQLiteConnection as Sqlite;
 
 class Budget
 {
-    public function _construct(){
+    private $db;
+    private $data;
+    private $table='Budget';
 
+
+    public function _construct(){
+        $this->db=new Sqlite();
+        $this->data=$this->db->connect();
     }
+
+    public function creating($request){
+        $name=$request['name'];
+        $email=$request['amount'];
+        $descrip=$request['descrip'];
+        $user_id=$request['user'];
+
+
+        $query="INSERT INTO `".$this->table."(name,describ,user_id)"."` values(".$name.",".$descrip.",".$user_id.")";
+        $this->data->query($query);
+    }
+
+
 
 }

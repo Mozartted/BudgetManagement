@@ -40,8 +40,8 @@ class Users
         return $user->fetch(\PDO::FETCH_ASSOC);
     }
 
+    //ADDING A NEW UPDATING USER INFO AND UPDATING USERS
     public function edit(){
-
 
     }
 

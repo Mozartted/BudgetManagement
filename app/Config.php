@@ -8,8 +8,24 @@
 
 namespace App;
 
+mb_internal_encoding("UTF-8");
+header('Content-Type: text/html; charset=utf-8');
+session_start();
+
+
 
 class Config
 {
+
+//GLOBAL CONFIGURATION
+
+
+
+//GLOBAL DEFINITONS
+const NAME='Budget';
+const WWW='http://budget';
+
+const ASSETS='assets';
+
     const PATH_TO_SQLITE_FILE="../database/budget.sqlite";
 }
