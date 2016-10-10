@@ -1,0 +1,107 @@
+
+
+.con{
+    width:100%
+    padding:0px;
+    height:90%;
+}
+
+.welcome {
+    width: 100%;
+    font-family: "Segoe UI",Segoe,Tahoma,Arial,Verdana,sans-serif;
+    font-size: 10pt;
+    text-align: center;
+    height: 80px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color:#9f9f9f;
+}
+
+.position_setter {
+    height: 40px;
+    width: inherit;
+    padding: 25px;
+    color: inherit;
+}
+
+.alink{
+    color:inherit;
+}
+
+/**navigation bars and sections*/
+.division1{
+    width:20%;
+    height:100%;
+    float: left;
+    background-color:#202020;
+    position: fixed;
+    left:0px;
+    top:40px;
+}
+
+.division3{
+    width:30%;
+    height:100%;
+    float: left;
+    background-color: #202020;
+    position: fixed;
+    left:0px;
+    top:40px;
+}
+
+.division4{
+    width:70%;
+    height:100%;
+    float:right;
+    position: fixed;
+    right: 0px;
+    top:40px;
+    overflow:scroll;
+}
+
+.division2{
+    width:80%;
+    height:100%;
+    float:right;
+    position: fixed;
+    right: 0px;
+    top:40px;
+    overflow:scroll;
+}
+
+.section {
+    color: #E3E3E3;
+    float: right;
+    width: 100%;
+    position:static;
+
+}
+
+.section_style1{
+    height:100%;
+    color:inherit;
+    width:100%;
+    background-color: #626262;
+}
+
+.section_style2{
+    height:600px;
+    width:100%;
+    color: inherit;
+    background-color: #ff7a17;
+
+}
+
+.section_style1inverse{
+    height:100%;
+    color:inherit;
+    width:100%;
+    background-color: #626262;
+}
+
+.section_style2inverse{
+    height:100%;
+    color:inherit;
+    width:100%;
+    background-color: #ffffff;
+}

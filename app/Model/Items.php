@@ -6,14 +6,14 @@
  * Time: 7:34 PM
  */
 
-namespace App;
+namespace App\Model;
 use App\SQLiteConnection as Sqlite;
 
 class Items
 {
     private $db;
     private $data;
-    private $table='Item';
+    const TABLE="items";
 
     public function _construct(){
         $this->db=new Sqlite();
@@ -27,7 +27,31 @@ class Items
         $status=0;
 
 
-        $query="INSERT INTO `".$this->table."(name,value,budget_id,status)"."` values(".$name.",".$value.",".$budget_id.",".$status.")";
+        $query="INSERT INTO `".Items::TABLE."(name,value,budget_id,status)"."` values(".$name.",".$value.",".$budget_id.",".$status.")";
         $this->data->query($query);
     }
+
+    public static function getAllItemsInBudget($budgetid){
+        $db=(new Sqlite())->connect();
+        $query="SELECT * FROM `".Items::TABLE."` WHERE budget_id=".$budgetid." ";
+
+        if($found=$db->query($query)){
+            return $found->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
+    }
+
+    public function getItem($itemId){
+        $this->db=(new Sqlite())->connect();
+        $query="SELECT * FROM `".Items::TABLE."` WHERE `id`=".$itemId." ";
+        if($found=$this->db->query($query)){
+            return $found->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
+    }
+
 }

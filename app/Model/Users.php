@@ -6,7 +6,7 @@
  * Time: 7:34 PM
  */
 
-namespace App;
+namespace App\Model;
 use App\SQLiteConnection as Sqlite;
 
 class Users
@@ -27,6 +27,7 @@ class Users
         $name=$request['name'];
         $email=$request['email'];
         $pass=$request['password'];
+        $usergroup=$request['group'];
 
         $query="INSERT INTO `".$this->table."` values(".$name.",".$pass.",".$email.")";
         $this->data->query($query);
@@ -41,8 +42,6 @@ class Users
     }
 
     //ADDING A NEW UPDATING USER INFO AND UPDATING USERS
-    public function edit(){
 
-    }
 
 }

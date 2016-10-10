@@ -21,11 +21,17 @@ class ComposerStaticInita88e3bc821a1975bebf96f505980c721
     );
 
     public static $classMap = array (
-        'App\\Budget' => __DIR__ . '/../..' . '/app/Budget.php',
         'App\\Config' => __DIR__ . '/../..' . '/app/Config.php',
-        'App\\Items' => __DIR__ . '/../..' . '/app/Items.php',
+        'App\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Controllers/LoginController.php',
+        'App\\Controllers\\SessionController' => __DIR__ . '/../..' . '/app/Controllers/SessionController.php',
+        'App\\Model\\Account' => __DIR__ . '/../..' . '/app/Model/Account.php',
+        'App\\Model\\AccountType' => __DIR__ . '/../..' . '/app/Model/AccountType.php',
+        'App\\Model\\Budget' => __DIR__ . '/../..' . '/app/Model/Budget.php',
+        'App\\Model\\Items' => __DIR__ . '/../..' . '/app/Model/Items.php',
+        'App\\Model\\Transaction' => __DIR__ . '/../..' . '/app/Model/Transaction.php',
+        'App\\Model\\UserGroup' => __DIR__ . '/../..' . '/app/Model/UserGroup.php',
+        'App\\Model\\Users' => __DIR__ . '/../..' . '/app/Model/Users.php',
         'App\\SQLiteConnection' => __DIR__ . '/../..' . '/app/SQLiteConnection.php',
-        'App\\Users' => __DIR__ . '/../..' . '/app/Users.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

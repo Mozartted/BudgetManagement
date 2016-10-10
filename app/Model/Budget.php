@@ -6,30 +6,53 @@
  * Time: 7:29 PM
  */
 
-namespace App;
+namespace App\Model;
 use App\SQLiteConnection as Sqlite;
 
 class Budget
 {
     private $db;
-    private $data;
-    private $table='Budget';
+    const TABLE='budgets';
 
 
     public function _construct(){
-        $this->db=new Sqlite();
-        $this->data=$this->db->connect();
+        $this->db=(new Sqlite())->connect();
+
     }
 
     public function creating($request){
+        $this->db=(new Sqlite())->connect();
         $name=$request['name'];
         $email=$request['amount'];
-        $descrip=$request['descrip'];
+        $describ=$request['descrip'];
         $user_id=$request['user'];
 
 
-        $query="INSERT INTO `".$this->table."(name,describ,user_id)"."` values(".$name.",".$descrip.",".$user_id.")";
-        $this->data->query($query);
+        $query="INSERT INTO `".Budget::TABLE."`(`name`,`describ`,`user_id`)"."values(".$name.",".$describ.",".$user_id.")";
+        $this->db->query($query);
+    }
+
+    public static function getAllBudget(){
+        $db=(new Sqlite())->connect();
+        $query="SELECT * FROM `".Budget::TABLE."` ";
+
+        if($found=$db->query($query)){
+            return $found->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
+    }
+
+    public function getBudget($budgetId){
+        $this->db=(new Sqlite())->connect();
+        $query="SELECT * FROM `".Budget::TABLE."` WHERE `id`=".$budgetId." ";
+        if($found=$this->db->query($query)){
+            return $found->fetch(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
     }
 
 

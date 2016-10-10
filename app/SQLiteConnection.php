@@ -6,25 +6,37 @@
  * Time: 7:41 PM
  */
 
+
 namespace App;
-
-
 class SQLiteConnection
 {
     private $pdo;
 
-    private function _construct(){
-        if($this->pdo==null){
-            $this->pdo=new \PDO('sqlite:'.Config::PATH_TO_SQLITE_FILE,"","",array(
-                \PDO::ATTR_PERSISTENT => true
-            ));
-        }
-    }
 
-    public function connect(){
+    public function connect() {
+
+        try{
+            $this->pdo=new \PDO('mysql:host='.Config::HOST.';dbname='.Config::DATABASE_NAME,Config::DATABASE_USERNAME,Config::PASSWORD);
+        }catch (\PDOException $err) {
+            echo "harmless error message if the connection fails";
+            file_put_contents('PDOErrors.txt', $err, FILE_APPEND);  // write some details to an error-log outside public_html
+            die();  //  terminate connection
+        }
         return $this->pdo;
     }
 
+
+
+    public function getArray( $query ) {
+        $args = func_get_args();
+        array_shift( $args );
+        $result = $this->pdo->query($query);
+        $array = [];
+        while( $item = $result->fetch(\PDO::FETCH_ASSOC)) {
+            $array[] = $item;
+        }
+        return $array;
+    }
 
 
 }

@@ -6,9 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Budget' => $baseDir . '/app/Budget.php',
     'App\\Config' => $baseDir . '/app/Config.php',
-    'App\\Items' => $baseDir . '/app/Items.php',
+    'App\\Controllers\\LoginController' => $baseDir . '/app/Controllers/LoginController.php',
+    'App\\Controllers\\SessionController' => $baseDir . '/app/Controllers/SessionController.php',
+    'App\\Model\\Account' => $baseDir . '/app/Model/Account.php',
+    'App\\Model\\AccountType' => $baseDir . '/app/Model/AccountType.php',
+    'App\\Model\\Budget' => $baseDir . '/app/Model/Budget.php',
+    'App\\Model\\Items' => $baseDir . '/app/Model/Items.php',
+    'App\\Model\\Transaction' => $baseDir . '/app/Model/Transaction.php',
+    'App\\Model\\UserGroup' => $baseDir . '/app/Model/UserGroup.php',
+    'App\\Model\\Users' => $baseDir . '/app/Model/Users.php',
     'App\\SQLiteConnection' => $baseDir . '/app/SQLiteConnection.php',
-    'App\\Users' => $baseDir . '/app/Users.php',
 );

@@ -1,0 +1,563 @@
+html, body {
+    height: 100%;
+    font-family: "Segoe UI",Tahoma,Arial;
+}
+.swan_header {
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    top: 0px;
+    width: 100%;
+    position:fixed;
+
+
+}
+
+#comment_section{
+    background: #47494c;
+    display: none;
+    transition: 0.5s ease 0.7s;
+}
+
+.nav_menu_li{
+  min-height:70px;
+}
+
+.nav_menu_li:hover{
+  background:#EA4335;
+
+}
+
+
+
+/***creating a hexagonal pattern**/
+
+.hexrow {
+    white-space: nowrap;
+    /*right/left margin set at (( width of child div x sin(30) ) / 2) makes a fairly tight fit; a 3px bottom seems to match*/
+    margin: 0 25px 3px;
+}
+
+.hexrow > div {
+    width: 100px;
+    height: 173.2px; /* ( width x cos(30) ) x 2 */
+    /* For margin:
+    right/left = ( width x sin(30) ) makes no overlap
+    right/left = (( width x sin(30) ) / 2) leaves a narrow separation
+    */
+    margin: 0 25px;
+    position: relative;
+    background-position: -50px 0; /* -left position -1 x width x sin(30) */
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    color: #000000;
+    text-align: center;
+    line-height: 173.2px; /*equals height*/
+    display: inline-block;
+}
+
+.hexrow > div:nth-child(odd) {
+    top: 43.3px; /* ( width x cos(30) / 2 ) */
+}
+
+.hexrow > div:nth-child(even) {
+    top: -44.8px; /* -1 x( ( width x cos(30) / 2) + (hexrow bottom margin / 2)) */
+}
+
+.hexrow > div > div:first-of-type {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+    background-image: inherit;
+
+    -ms-transform:rotate(60deg); /* IE 9 */
+    -moz-transform:rotate(60deg); /* Firefox */
+    -webkit-transform:rotate(60deg); /* Safari and Chrome */
+    -o-transform:rotate(60deg); /* Opera */
+    transform:rotate(60deg);
+}
+
+.hexrow > div > div:first-of-type:before {
+    content: '';
+    position: absolute;
+    width: 200px; /* width of main + margin sizing */
+    height: 100%;
+    background-image: inherit;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    -ms-transform:rotate(-60deg) translate(-150px, 0); /* IE 9 */
+    -moz-transform:rotate(-60deg) translate(-150px, 0); /* Firefox */
+    -webkit-transform:rotate(-60deg) translate(-150px, 0); /* Safari and Chrome */
+    -o-transform:rotate(-60deg) translate(-150px, 0); /* Opera */
+    transform:rotate(-60deg) translate(-150px, 0);
+
+    -ms-transform-origin: 0 0; /* IE 9 */
+    -webkit-transform-origin: 0 0; /* Safari and Chrome */
+    -moz-transform-origin: 0 0; /* Firefox */
+    -o-transform-origin: 0 0; /* Opera */
+    transform-origin: 0 0;
+}
+
+.hexrow > div > div:last-of-type {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    overflow: hidden;
+    background-image: inherit;
+
+    -ms-transform:rotate(-60deg); /* IE 9 */
+    -moz-transform:rotate(-60deg); /* Firefox */
+    -webkit-transform:rotate(-60deg); /* Safari and Chrome */
+    -o-transform:rotate(-60deg); /* Opera */
+    transform:rotate(-60deg);
+}
+
+.hexrow > div > div:last-of-type:before {
+    content: '';
+    position: absolute;
+    width: 200px; /* starting width + margin sizing */
+    height: 100%;
+    background-image: inherit;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto 120%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    /*translate properties are initial width (100px) and half height (173.2 / 2 = 86.6) */
+    -ms-transform:rotate(60deg) translate(100px, 86.6px); /* IE 9 */
+    -moz-transform:rotate(60deg) translate(100px, 86.6px); /* Firefox */
+    -webkit-transform:rotate(60deg) translate(100px, 86.6px); /* Safari and Chrome */
+    -o-transform:rotate(60deg) translate(100px, 86.6px); /* Opera */
+    transform:rotate(60deg) translate(100px, 86.6px);
+
+    -ms-transform-origin: 100% 0; /* IE 9 */
+    -webkit-transform-origin: 100% 0; /* Safari and Chrome */
+    -moz-transform-origin: 100% 0; /* Firefox */
+    -o-transform-origin: 100% 0; /* Opera */
+    transform-origin: 100% 0;
+}
+
+.hexrow > div > span {
+    display: inline-block;
+    margin: 0 -30px;
+    line-height: 1.1;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+.hexrow:nth-child(2) > div:nth-child(1) {
+
+}
+
+.hexrow:nth-child(2) > div:nth-child(1) > span {
+    /*change some other settings*/
+    margin: 0 -20px;
+    color: black;
+    font-size: .8em;
+    font-weight: bold;
+}
+
+.hexrow:nth-child(2) > div:nth-child(2) {
+
+    color: #ffffff;
+}
+
+.hexrow:nth-child(2) > div:nth-child(3) {
+
+    opacity: .3;
+    color: #ffffff;
+}
+
+.hexrow:nth-child(2) > div:nth-child(3) > div:before {
+    /* nothing special needed here */
+}
+
+.hexrow:nth-child(2) > div:nth-child(4) {
+
+    /*you can shift a large background image, but it can get complicated
+    best to keep the image as the total width (200px) and height (174px)
+    that the hex would be.
+    */
+    background-position: -150px -20px;
+}
+
+.hexrow:nth-child(2) > div:nth-child(4) > div:before {
+    background-position: -100px -20px; /* the left shift is always less in the pseudo elements by the amount of the base shift */
+}
+
+
+
+.btnn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 2px solid transparent;
+    border-radius: 2px;
+}
+
+.btnn-default {
+    color: #333;
+    font-weight: 600;
+    background-color: #fff;
+    border-color: #EA4335;
+}
+.btnn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    text-decoration: none;
+}
+
+
+.sectionss{
+    border: 1px solid rgb(62, 134, 216);
+    padding: 7px;
+    min-height:444px;
+    border-radius: 5px;
+    background: rgb(62, 134, 216) none repeat scroll 0% 0%;
+    color: rgb(255, 255, 255);
+}
+
+.comment_section{
+    width:66.6667%;
+
+}
+
+.archive{
+    border: #3e86d8 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#titlee{
+    color:#fff;
+    padding:0px;
+}
+
+#titlee:hover{
+    color:#fff;
+}
+
+#pad{
+    padding:10px;
+}
+.seperator{
+    height:100px;
+}
+
+.sectionss ul li{
+    list-style: none;
+}
+
+.header_bar{
+    background: #074e68;
+    width:100%;
+    height:50px;
+}
+.innerh1{
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Segoe UI','Ubuntu',Tahoma,sans-serif;
+    font-size: 5.5em;
+}
+#background{
+    background-repeat: no-repeat;
+    height:600px;
+    width: 100%;
+    font-family:"Segoe UI",Segoe,Tahoma,Arial,Verdana,sans-serif;
+}
+
+#background_image {
+    height: 800px;
+    width: 100%;
+}
+
+.containerr{
+    padding:0.5rem;
+    -moz-font-language-override: normal;
+    font-style: normal;
+    font-family: 'Segoe UI','Ubuntu',sans-serif,calibri;
+    color: #ffffff;
+    vertical-align: middle;
+    width:100%;
+    min-height:50px;
+    z-index: 2;
+}
+
+.main_back{
+    background-size: cover;
+    height:550px;
+    width:100%;
+
+}
+
+@media only screen and (min-width:200px) and (max-width:600px){
+    .main_back{
+        height:400px;
+    }
+
+
+    .row div{
+        padding:5px;
+    }
+}
+
+@media only screen and (min-width:200px) and (max-width:500px){
+    .main_back{
+        height:400px;
+    }
+
+    .row div{
+        padding:5px;
+    }
+}
+
+
+
+.outline{
+    width:100%;
+    text-align: center;
+    horizontal-align:middle;
+}
+
+.dev_base{
+    background-color: #3e86d8;
+    border-radius: 4px;
+    opacity:inherit;
+    transition: 0.7s ease 0s;
+}
+
+.row.pad{
+    padding-top:3em;
+}
+.dev_base ul{
+    list-style-type: none;
+}
+
+.dev_base ul li a{
+    display: block;
+}
+
+
+.dev_base ul li:hover{
+    color: #FF972A;
+    background:#3e86d8;
+}
+
+.dev_base2{
+    background: inherit;
+    height:300px;
+    width:300px;
+    border-radius:inherit;
+}
+
+
+.containerr2{
+    padding:5px;
+    -moz-font-language-override: normal;
+    font-style: normal;
+    font-family: 'Segoe UI','Ubuntu',sans-serif,calibri;
+    color: #ffffff;
+    vertical-align: middle;
+    background-color: #254d80;
+    width:100%;
+    min-height: 40px;
+
+}
+#search{
+    max-width: 300px;
+    border-radius: 2%;
+
+}
+
+.main_logo{
+    max-width:300px;
+}
+
+#Logo_id{
+    font-family: inherit;
+    font-size: 16px;
+}
+
+
+#Logo_big{
+    position: absolute;
+    visibility: visible;
+    left: 14px;
+    top: 150px;
+}
+
+#big_logo {
+    height: 150px;
+    width: 145px;
+}
+
+#Login_id {
+    font-family: inherit;
+    float: right;
+    padding-right: 5px;
+}
+
+#pfloat {
+    width: 100%;
+}
+
+.Login_input {
+    width: 200px;
+    font-size: small;
+    color: #787878;
+    background-color: inherit;
+    border-style: none none outset;
+    border-top: 0px none;
+    border-right: 0px none;
+    border-left: 0px none;
+    border-color: #8e8e8e;
+    height: 25px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#login_submit {
+    font-family: inherit;
+    font-size: small;
+    background-color: #8e8e8e;
+    border: medium none #8e8e8e;
+    color: rgb(227, 227, 227);
+    width: 80px;
+    height: 26px;
+}
+
+#SignUP {
+    box-sizing: content-box;
+    width: 400px;
+    background-color: rgba(41, 18, 18, 0.7);
+    float: right;
+    color: #919191;
+    position: absolute;
+    visibility: visible;
+    right: 14px;
+    top: 150px;
+    border-radius: 15px;
+    padding: 14px;
+}
+
+.sign_up {
+    height: 50px;
+}
+
+#Signup_Submit {
+    height: 60px;
+    width: 120px;
+    background-color: #8e8e8e;
+    color: #DADADA;
+    border: #8e8e8e;
+    font-size: 15pt;
+}
+
+
+
+#comment_section{
+    background: transparent ;
+    transition: all 0.5s ease 0.7s;
+    padding: 12px;
+    display: none;
+    height: 310px;
+    opacity: 1;
+}
+
+#setting_Submit{
+    height: 30px;
+    width: 120px;
+    background-color: #202020;
+    color: #DADADA;
+    border: #8e8e8e;
+    font-size: 15pt;
+}
+
+#Codee {
+    color: #ffffff;
+    font-size: 35pt;
+}
+#footer {
+    width: 100%;
+    font-size: 12px;
+    color: #202020;
+    height: 10%;
+    font-family: "Segoe UI", Segoe, Tahoma, Arial, Verdana, sans-serif;
+}
+
+
+/***This is the section for the admin edit section code*/
+#edit_section1{
+    display: block;
+}
+
+#edit_section2{
+    display: block;
+}
+
+#edit_section3{
+    display: block;
+}
+
+#edit_section4{
+    display: block;
+}
+
+#edit_section5{
+    display: block;
+}
+
+#edit_section6{
+    display: block;
+}
+
+#edit_section7{
+    display: block;
+}
+
+.error_dis{
+    background: #f74425;
+    color: #202020;
+    height:30px;
+    padding:5px;
+    border-radius: 3px;
+    margin:5px;
+}
+
+.lblock{
+    display:none;
+}
+
+.lshow{
+    display: block;
+}

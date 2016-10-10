@@ -19,7 +19,12 @@ class Config
 
 //GLOBAL CONFIGURATION
 
+const DATABASE_USERNAME="root";
+const PASSWORD="mozart";
 
+
+const HOST="localhost";
+const DATABASE_NAME="finance";
 
 //GLOBAL DEFINITONS
 const NAME='Budget';
