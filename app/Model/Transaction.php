@@ -102,4 +102,15 @@ class Transaction
             return [];
         }
     }
+
+    public static function deleteTransactions($accountNo){
+        $db=(new Sqlite())->connect();
+        $query="DELETE FROM ".\App\Model\Transaction::TABLE." WHERE account=".$accountNo." ";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

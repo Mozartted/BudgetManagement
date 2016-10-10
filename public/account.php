@@ -91,8 +91,8 @@ $collectAccount=Account::getAllAccount();
                                                             <li class="col-md-6">
                                                                 <div class="col-md-3">$amount</div><div class="col-md-3">
                                                                     <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a></br>
-                                                                    <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                        <input class="btn btn-danger" type="submit" value="Delete">
+                                                                    <form method="POST" action="../app/Controllers/operationDelete.php?account=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                        <input class="btn btn-danger" name="DeleteAccount" type="submit" value="Delete">
                                                                     </form>
                                                                 </div>
                                                             </div>

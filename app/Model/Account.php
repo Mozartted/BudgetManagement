@@ -48,6 +48,30 @@ class Account
     }
 
 
+    //function to perform delete operations,You are suppose to know this kind of..
+    public static function delete($AccountId){
+        $db=(new Sqlite())->connect();
+
+        //deleting an account deletes the account and all transactions pertaining to that account.
+        //in deleting transactions, we'll like to redo the account happenings,
+        //expenses, add to balance, income removed from balance.
+
+        //query to delete account
+        $query="DELETE FROM ".Account::TABLE."WHERE id=".$AccountId." ";
+        if((Transaction::deleteTransactions($AccountId))==true){
+            $queryy=($db->query($query));
+            if($queryy){
+                return true;
+            }
+            else{
+                echo "Transaction did not delete";
+            }
+        }else{
+
+            return false;
+        }
+    }
+
     public static function getAllAccount(){
         $db=(new Sqlite())->connect();
         $query="SELECT * FROM `".Account::TABLE."` ";
