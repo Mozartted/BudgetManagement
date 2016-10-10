@@ -56,6 +56,7 @@ if(isset($_POST['CreateBudget'])){
         [
             'name'=>$_POST['name'],
             'describ'=>$_POST['describ'],
+            'year'=>$_POST['year'],
         ]
     );
 
@@ -89,6 +90,23 @@ if(isset($_POST['CreateItem'])){
 
     }
 
+}
 
+if(isset($_POST['CreateYear'])){
+    $status=\App\Model\Year::creating(
+        [
+            'name'=>$_POST['name'],
+            'begin'=>$_POST['begin'],
+            'end'=>$_POST['end'],
+        ]
+    );
 
+    if($status==true){
+        echo("Created");
+        header("Location:../../public/index.php");
+
+    }else{
+        echo("Not Created Budget");
+
+    }
 }

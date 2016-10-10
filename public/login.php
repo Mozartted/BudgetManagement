@@ -73,6 +73,10 @@ if(isset($_POST['Login'])){
   <!--Log In View-->
   <div class="row container" style="margin-top:150px">
         <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <div class="modal-title">Plan and Implementation Of Port Harcourt Budget Management System</div>
+
+            </div>
             <div class="panel panel-default">
                 <?php
                 foreach($errorList as $listerror) {
@@ -82,6 +86,9 @@ if(isset($_POST['Login'])){
                     echo("<div class='alert-info'>".$information."</div>");
                 }
                 ?>
+
+
+
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="">

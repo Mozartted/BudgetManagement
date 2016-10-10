@@ -31,6 +31,7 @@ class ComposerStaticInita88e3bc821a1975bebf96f505980c721
         'App\\Model\\Transaction' => __DIR__ . '/../..' . '/app/Model/Transaction.php',
         'App\\Model\\UserGroup' => __DIR__ . '/../..' . '/app/Model/UserGroup.php',
         'App\\Model\\Users' => __DIR__ . '/../..' . '/app/Model/Users.php',
+        'App\\Model\\Year' => __DIR__ . '/../..' . '/app/Model/Year.php',
         'App\\SQLiteConnection' => __DIR__ . '/../..' . '/app/SQLiteConnection.php',
     );
 

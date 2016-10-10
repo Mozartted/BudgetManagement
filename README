@@ -1,0 +1,81 @@
+The Project is a Budget Management System
+
+Installation
+"""""""""""""""""""""""""""""""""""""""""""""""""
+In the Terminal, navigate to the Projects config folder and run the source command through mysql on the
+file finance.sql
+
+this would create a finance database with the following attributes.....
+
+CREATE DATABASE finance;
+
+USE finance;
+
+CREATE TABLE account_type(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+
+CREATE TABLE accounts(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) DEFAULT NULL,
+	type INT DEFAULT NULL,
+	balance  DECIMAL DEFAULT NULL,
+	describ TEXT DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE budgets(
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT  DEFAULT NULL,
+	name CHAR(128) DEFAULT NULL,
+	amount  DECIMAL DEFAULT NULL,
+	describ TEXT DEFAULT NULL,
+	year INT DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE items(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) DEFAULT NULL,
+	amount  DECIMAL DEFAULT NULL,
+	budget_id INT DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE transactions(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) DEFAULT NULL,
+	amount  DECIMAL DEFAULT NULL,
+	description TEXT DEFAULT NULL,
+	datee DATE DEFAULT NULL,
+	type INT DEFAULT NULL,
+	account INT DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+
+
+CREATE TABLE user_group(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+
+
+CREATE TABLE years(
+	id INT NOT NULL AUTO_INCREMENT,
+	name CHAR(128) DEFAULT NULL,
+	date_begin DATE DEFAULT NULL,
+	date_end DATE DEFAULT NULL,
+	PRIMARY KEY(id)
+);
+
+
+Step2:
+run  $ composer dump-autoload -o  Through the terminal to run composer and
+generate PSR-4 autoload namespaces for the application name spaces to navigate...
+

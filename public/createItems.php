@@ -150,14 +150,7 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Admin</h4>
-                <div class="input-group">
-                    <div><img src="" style="width:25px; height:25px"></div>
-                </div>
-                <!-- /.input-group -->
-            </div>
+
 
             <div class="well">
                 <h4>Accounts</h4>

@@ -1,7 +1,7 @@
-
 <?php
 include "../app/Controllers/SessionController.php";
 use App\Controllers\SessionController;
+use App\Model\Budget;
 use App\Model\Account;
 require_once '../vendor/autoload.php';
 
@@ -15,7 +15,7 @@ if(isset($session)){
 }
 
 //getting all in budget
-$yearList=\App\Model\Year::getAllYears();
+$budgetList=Budget::getBudgetInYear($year);
 $collectAccount=Account::getAllAccount();
 
 ?>
@@ -64,12 +64,12 @@ $collectAccount=Account::getAllAccount();
                 <div id="alert-tab" class="tab-pane fade in active">
                     <div class="row">
                         <div class="panel panel-green">
-                            <div class="panel-heading" style="color:#202020;">Years</div>
+                            <div class="panel-heading" style="color:#202020;">Budgets</div>
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <a href="createyear.php" class="btn btn-primary">
-                                            <i class="fa fa-btn fa-sign-in"></i> Create New Year
+                                        <a href="createBudget.php" class="btn btn-primary">
+                                            <i class="fa fa-btn fa-sign-in"></i> Create Budget
                                         </a>
                                     </div>
                                 </div>
@@ -80,31 +80,30 @@ $collectAccount=Account::getAllAccount();
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            Years</h3>
+                                            Budgets</h3>
                                     </div>
                                     <ul class="list-group">
                                         <?php
-                                        foreach($yearList as $years ){
-                                            $id=$years['id'];
-                                            $name=$years['name'];
-                                            $begin=$years['date_begin'];
-                                            $end=$years['date_end'];
+                                        foreach($budgetList as $budget ){
+                                            $id=$budget['id'];
+                                            $name=$budget['name'];
+                                            $amount=$budget['amount'];
 
                                             $output=<<<OUTPUT
 <div class="list-group-item row">
                                                                   <div class="col-md-4">
-                                                                      <a href="budgetsList.php?year=$id">
+                                                                      <a href="budgetview.php?budget=$id">
                                                                             $name
                                                                       </a>
                                                                   </div>
                                                                   <div class="col-md-6">
-                                                                    <div class="col-md-4">$begin</div>
-                                                                    <div class="col-md-4">$end</div>
+                                                                    <div class="col-md-4">$amount</div>
+
                                                                   <div class="col-md-6">
 
                                                                     <div class="col-md-6">
-                                                                        <form method="POST" action="../app/Controllers/operationDelete.php?year=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                            <input class="btn btn-danger" type="submit" name="DeleteYear" name="DeleteYear" value="Delete">
+                                                                        <form method="POST" action="../app/Controllers/operationDelete.php?budget=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                            <input class="btn btn-danger" type="submit" name="DeleteBudget" value="Delete">
                                                                         </form>
                                                                     </div>
                                                                   </div>
@@ -130,18 +129,12 @@ OUTPUT;
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Blog Search Well -->
-
 
             <!-- Blog Categories Well -->
             <div class="well">
                 <h4>Accounts</h4>
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="col-lg-12">
-                            <a href="account.php" class="btn btn-success">All Accounts</a>
-
-                        </div>
                         <ul class="list-unstyled">
                             <?php
                             foreach($collectAccount as $account ){

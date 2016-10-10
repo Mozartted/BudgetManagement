@@ -16,5 +16,6 @@ return array(
     'App\\Model\\Transaction' => $baseDir . '/app/Model/Transaction.php',
     'App\\Model\\UserGroup' => $baseDir . '/app/Model/UserGroup.php',
     'App\\Model\\Users' => $baseDir . '/app/Model/Users.php',
+    'App\\Model\\Year' => $baseDir . '/app/Model/Year.php',
     'App\\SQLiteConnection' => $baseDir . '/app/SQLiteConnection.php',
 );

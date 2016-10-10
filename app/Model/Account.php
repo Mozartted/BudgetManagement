@@ -57,9 +57,9 @@ class Account
         //expenses, add to balance, income removed from balance.
 
         //query to delete account
-        $query="DELETE FROM ".Account::TABLE."WHERE id=".$AccountId." ";
+        $query="DELETE FROM ".Account::TABLE." WHERE id=".$AccountId." ";
         if((Transaction::deleteTransactions($AccountId))==true){
-            $queryy=($db->query($query));
+            $queryy=$db->query($query);
             if($queryy){
                 return true;
             }

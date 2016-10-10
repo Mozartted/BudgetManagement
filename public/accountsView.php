@@ -132,12 +132,10 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 
                                                                     <div class="col-md-6">
+
                                                                         <div class="col-md-6">
-                                                                            <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                                 <input class="btn btn-danger" type="submit" value="Delete">
+                                                                            <form method="POST" action="../app/Controllers/operationDelete.php?transaction=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                                 <input class="btn btn-danger" type="submit" value="Delete" name="DeleteTransact">
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -157,14 +155,7 @@ OUTPUT;
 </div>
         <div class="col-md-4">
 
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Admin</h4>
-                <div class="input-group">
-                    <div><img src="" style="width:25px; height:25px"></div>
-                </div>
-                <!-- /.input-group -->
-            </div>
+
 
             <!-- Blog Categories Well -->
             <div>
@@ -192,12 +183,6 @@ OUTPUT;
                         </div>
                     </div>
                     <!-- /.row -->
-                </div>
-
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
 
             </div>

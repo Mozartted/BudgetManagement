@@ -60,14 +60,36 @@ class Items
         }
     }
 
-    public function getItem($itemId){
-        $this->db=(new Sqlite())->connect();
-        $query="SELECT * FROM `".Items::TABLE."` WHERE `id`=".$itemId." ";
-        if($found=$this->db->query($query)){
-            return $found->fetchAll(\PDO::FETCH_ASSOC);
+    public static function getItem($itemId){
+        $db=(new Sqlite())->connect();
+        $query="SELECT * FROM ".Items::TABLE." WHERE id=".$itemId." ";
+        if($found=$db->query($query)){
+            return $found->fetch(\PDO::FETCH_ASSOC);
         }
         else{
             return [];
+        }
+    }
+
+    public static function deleteItems($BudgetNo){
+        $db=(new Sqlite())->connect();
+        $query="DELETE FROM ".Items::TABLE." WHERE budget_id=".$BudgetNo." ";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static function delete($item){
+        $db=(new Sqlite())->connect();
+        $query="DELETE FROM ".Items::TABLE." WHERE ".Items::TABLE.".id=".$item." ";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

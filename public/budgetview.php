@@ -115,12 +115,10 @@ $collectAccount=Account::getAllAccount();
                                                                     <div class="col-md-4">$amount</div>
 
                                                                   <div class="col-md-6">
+
                                                                     <div class="col-md-6">
-                                                                    <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                            <input class="btn btn-danger" type="submit" value="Delete">
+                                                                        <form method="POST" action="../app/Controllers/operationDelete.php?item=$id" accept-charset="UTF-8">
+                                                                            <input class="btn btn-danger" type="submit" value="Delete" name="DeleteItem">
                                                                         </form>
                                                                     </div>
                                                                   </div>
@@ -147,11 +145,11 @@ OUTPUT;
         <div class="col-md-4">
 
             <!-- Blog Categories Well -->
-            <div class="well">
+            <div class="col-lg-12">
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <a href="index.php" class="btn btn-primary">
-                            <i class="fa fa-btn fa-sign-in"></i> Back to Budgets
+                            <i class="fa fa-btn fa-sign-in"></i> Back to Years
                         </a>
                     </div>
                 </div>

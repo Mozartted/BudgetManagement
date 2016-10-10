@@ -70,10 +70,20 @@ $collectAccount=Account::getAllAccount();
                                 <!--Displays the users and their levels Admin or writer-->
 
                                 <div class="well panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            Accounts</h3>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-md-offset-4">
+                                                <a href="accountcreate.php" class="btn btn-primary">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Create Account
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="panel-heading">
+
+                                    </div>
+
+
                                     <ul class="list-group">
                                         <?php
                                         foreach($collectAccount as $account ){
@@ -83,20 +93,27 @@ $collectAccount=Account::getAllAccount();
 
                                             $output=<<<OUTPUT
 <div class="list-group-item row">
-                                                        <li class="col-md-6">
-                                                        <a href="accountsView.php?account=$id">
-                                                                $name
-                                                        </a>
-                                                        </li>
-                                                            <li class="col-md-6">
-                                                                <div class="col-md-3">$amount</div><div class="col-md-3">
-                                                                    <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a></br>
-                                                                    <form method="POST" action="../app/Controllers/operationDelete.php?account=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                        <input class="btn btn-danger" name="DeleteAccount" type="submit" value="Delete">
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </li>
+                                                                  <div class="col-md-4">
+                                                                      <a href="budgetview.php?budget=$id">
+                                                                            $name
+                                                                      </a>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-3">
+                                                                    $amount
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+
+                                                                        <div class="col-md-6">
+                                                                            <form method="POST" action="../app/Controllers/operationDelete.php?transaction=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                                 <input class="btn btn-danger" type="submit" value="Delete" name="DeleteTransact">
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                             </div>
+                                                        </div>
+
 OUTPUT;
                                             echo($output);
 
@@ -116,15 +133,6 @@ OUTPUT;
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
-
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Admin</h4>
-                <div class="input-group">
-                    <div><img src="" style="width:25px; height:25px"></div>
-                </div>
-                <!-- /.input-group -->
-            </div>
 
             <!-- Blog Categories Well -->
             <div class="well">
@@ -160,12 +168,6 @@ OUTPUT;
                     </div>
                 </div>
                 <!-- /.row -->
-            </div>
-
-            <!-- Side Widget Well -->
-            <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
 
         </div>

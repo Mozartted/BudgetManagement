@@ -164,15 +164,6 @@ OPTION;
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
-                <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>Admin</h4>
-                    <div class="input-group">
-                        <div><img src="" style="width:25px; height:25px"></div>
-                    </div>
-                    <!-- /.input-group -->
-                </div>
-
                 <!-- Blog Categories Well -->
                 <div class="well">
                     <h4>Accounts</h4>
@@ -205,12 +196,6 @@ OPTION;
                         <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->
-                </div>
-
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
 
             </div>

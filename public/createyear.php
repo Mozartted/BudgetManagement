@@ -22,7 +22,7 @@ $accountType=AccountType::getAllAccount();
 $account=Account::getAllAccount();
 
 //getting all in budget
-$years=\App\Model\Year::getAllYears();
+$budgetList=Budget::getAllBudget();
 $collectAccount=Account::getAllAccount();
 $transactions=Transaction::getAllTransactionsAccount($accountId);
 
@@ -70,7 +70,7 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Create Budget
+            <h1 class="page-header">Create a Budget year
             </h1>
             <div class="row">
                 </hr>
@@ -86,7 +86,7 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                 <div id="alert-tab" class="tab-pane fade in active">
                     <div class="row">
                         <div class="panel panel-green">
-                            <div class="panel-heading" style="color:#202020;">Create Budget</div>
+                            <div class="panel-heading" style="color:#202020;">Create Year</div>
                             <div class="panel-body">
                                 <!--Displays the users and their levels Admin or writer-->
 
@@ -102,29 +102,20 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 
                                         <div class="form-group">
-                                            <label for="describ" class="col-md-4 control-label">Description</label>
+                                            <label for="describ" class="col-md-4 control-label">Beginning Date</label>
 
                                             <div class="col-md-6">
-                                                <textarea  type="text" class="form-control" name="describ"></textarea>
+                                                <input type="date" class="form-control" name="begin">
 
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="password" class="col-md-4 control-label">Select Year</label>
+                                            <label for="describ" class="col-md-4 control-label">Ending Date</label>
 
                                             <div class="col-md-6">
-                                                <select  type="number" class="form-control" name="year">
-                                                    <?php
-                                                    foreach($years as $year){
-                                                        $ac_id=$year['id'];
-                                                        $ac_name=$year['name'];
+                                                <input type="date" class="form-control" name="end">
 
-                                                        echo "<option value='$ac_id'>$ac_name </option>";
-                                                    }
-
-                                                    ?>
-                                                </select>
                                             </div>
                                         </div>
 
@@ -132,8 +123,8 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary" name="CreateBudget">
-                                                    <i class="fa fa-btn fa-sign-in"></i> Create Budget
+                                                <button type="submit" class="btn btn-primary" name="CreateYear">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Create year
                                                 </button>
                                             </div>
                                         </div>
@@ -152,7 +143,6 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
-
 
 
             <div class="well">

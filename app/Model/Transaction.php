@@ -76,8 +76,18 @@ class Transaction
 
     }
 
-    //getting all in an array
+    public static function getTransact($TransactId){
+        $db=(new Sqlite())->connect();
+        $query="SELECT * FROM ".Transaction::TABLE." WHERE id=".$TransactId." ";
+        if($found=$db->query($query)){
+            return $found->fetch(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
+    }
 
+    //getting all in an array
     public function getAllTransactions(){
         $this->db=new Sqlite();
         $query="SELECT * FROM ".Transaction::TABLE." ";
@@ -106,6 +116,17 @@ class Transaction
     public static function deleteTransactions($accountNo){
         $db=(new Sqlite())->connect();
         $query="DELETE FROM ".\App\Model\Transaction::TABLE." WHERE account=".$accountNo." ";
+        if($db->query($query)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public static function deleteTransact($TransactNo){
+        $db=(new Sqlite())->connect();
+        $query="DELETE FROM ".\App\Model\Transaction::TABLE." WHERE id=".$TransactNo." ";
         if($db->query($query)){
             return true;
         }
