@@ -20,21 +20,34 @@ class Budget
 
     }
 
-    public function creating($request){
-        $this->db=(new Sqlite())->connect();
+    public static function creating($request){
+        $db=(new Sqlite())->connect();
         $name=$request['name'];
-        $email=$request['amount'];
-        $describ=$request['descrip'];
-        $user_id=$request['user'];
+        $describ=$request['describ'];
 
 
-        $query="INSERT INTO `".Budget::TABLE."`(`name`,`describ`,`user_id`)"."values(".$name.",".$describ.",".$user_id.")";
-        $this->db->query($query);
+        $query="INSERT INTO ".Budget::TABLE."(name,describ)"."values(:name,:describ)";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+
+            ':name' => $name,
+            ':describ' => $describ,
+
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public static function getAllBudget(){
         $db=(new Sqlite())->connect();
-        $query="SELECT * FROM `".Budget::TABLE."` ";
+        $query="SELECT * FROM ".Budget::TABLE." ";
 
         if($found=$db->query($query)){
             return $found->fetchAll(\PDO::FETCH_ASSOC);

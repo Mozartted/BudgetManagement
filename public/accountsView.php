@@ -79,23 +79,24 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
     <div class="row" style="margin-top:50px;">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <a href="editTransaction.php" class="btn btn-primary">
+                            <i class="fa fa-btn fa-sign-in"></i> Create Transaction
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div id="generalTabContent" class="tab-content responsive">
                 <div id="alert-tab" class="tab-pane fade in active">
+
                     <div class="row">
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
                                             Transactions</h3>
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-md-offset-4">
-                                                    <a href="editTransaction.php" class="btn btn-primary">
-                                                        <i class="fa fa-btn fa-sign-in"></i> Create Transaction
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <ul class="list-group">
                                         <?php
@@ -112,22 +113,36 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                                             }
 
                                             $output=<<<OUTPUT
-                                                        <li class=" list-group-item col-md-6">
-                                                        <a href="budgetview.php?budget=$id">
-                                                                $name
-                                                        </a>
-                                                        </li>
-                                                            <li class="list-group-item col-md-6">
-                                                            <p>$type</p>
-                                                            <div class="col-md-3">$amount</div><div class="col-md-3">
-                                                               <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
-                                                                  </br>
-                                                                  <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                      <input class="btn btn-danger" type="submit" value="Delete">
-                                                                  </form>
-                                                            </div>
+                                                        <div class="list-group-item row">
+                                                                  <div class="col-md-4">
+                                                                      <a href="budgetview.php?budget=$id">
+                                                                            $name
+                                                                      </a>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-3">
+                                                                    $amount
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                    $type
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                    $date
+                                                                    </div>
 
-                                                        </li>
+
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-6">
+                                                                            <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                                 <input class="btn btn-danger" type="submit" value="Delete">
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                             </div>
+                                                        </div>
 OUTPUT;
                                             echo($output);
 

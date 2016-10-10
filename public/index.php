@@ -65,6 +65,15 @@ $collectAccount=Account::getAllAccount();
                                 <div class="row">
                                     <div class="panel panel-green">
                                         <div class="panel-heading" style="color:#202020;">Budgets</div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-4">
+                                                    <a href="createBudget.php" class="btn btn-primary">
+                                                        <i class="fa fa-btn fa-sign-in"></i> Create Budget
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="panel-body">
                                             <!--Displays the users and their levels Admin or writer-->
 
@@ -82,20 +91,26 @@ $collectAccount=Account::getAllAccount();
 
                                                         $output=<<<OUTPUT
 <div class="list-group-item row">
-                                                        <div class="col-md-6">
-                                                        <a href="budgetview.php?budget=$id">
-                                                                $name
-                                                        </a>
-                                                        </div>
-                                                            <div class="col-md-6">
-                                                                <div class="col-md-3">$amount</div><div class="col-md-3">
-                                                                    <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a> |
-                                                                    <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                        <input class="btn btn-danger" type="submit" value="Delete">
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                  <div class="col-md-4">
+                                                                      <a href="budgetview.php?budget=$id">
+                                                                            $name
+                                                                      </a>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-4">$amount</div>
+
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-6">
+                                                                    <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                            <input class="btn btn-danger" type="submit" value="Delete">
+                                                                        </form>
+                                                                    </div>
+                                                                  </div>
+                                                                  </div>
+                                                              </div>
 OUTPUT;
                                                         echo($output);
 
@@ -161,11 +176,7 @@ OUTPUT;
                     <!-- /.row -->
                 </div>
 
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-                </div>
+
 
             </div>
 

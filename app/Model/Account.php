@@ -46,6 +46,8 @@ class Account
             return false;
         }
     }
+
+
     public static function getAllAccount(){
         $db=(new Sqlite())->connect();
         $query="SELECT * FROM `".Account::TABLE."` ";

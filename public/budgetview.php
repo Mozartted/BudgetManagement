@@ -65,12 +65,11 @@ $collectAccount=Account::getAllAccount();
     <div class="row" style="margin-top:50px;">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <div id="generalTabContent" class="tab-content responsive">
                 <div id="alert-tab" class="tab-pane fade in active">
                     <div class="row">
                         <div>
-                            <div class="panel-heading"><?php echo($budgetInfo['name']) ?></div>
-                            <div class="row"><p>Totaling</p><p>
+                            <div class=" row " style="font-size: 2em;"><?php echo($budgetInfo['name']) ?></div>
+                            <div class="row col-md-12"><p>Totaling</p><p>
                                     <?php
                                     $total=null;
                                     foreach($itemList as $itemm ){
@@ -81,6 +80,15 @@ $collectAccount=Account::getAllAccount();
                                     echo($total);
                                     ?></p>
                             </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-4">
+                                        <a href="createItems.php" class="btn btn-primary">
+                                            <i class="fa fa-btn fa-sign-in"></i> Create Items
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="panel-body">
                                 <!--Displays the users and their levels Admin or writer-->
                                 <div class="panel panel-default">
@@ -88,6 +96,7 @@ $collectAccount=Account::getAllAccount();
                                         <h3 class="panel-title">
                                             Items</h3>
                                     </div>
+
                                     <ul class="list-group">
                                     <?php
                                     foreach($itemList as $item ){
@@ -96,21 +105,27 @@ $collectAccount=Account::getAllAccount();
                                         $amount=$item['amount'];
 
                                         $output=<<<OUTPUT
-                                                          <div class="list-group-item row">
-                                                        <div class="col-md-6">
-                                                        <a href="budgetview.php?budget=$id">
-                                                                $name
-                                                        </a>
-                                                        </div>
-                                                            <div class="col-md-6">
-                                                                <div class="col-md-3">$amount</div><div class="col-md-3">
+                                                         <div class="list-group-item row">
+                                                                  <div class="col-md-4">
+                                                                      <a href="budgetview.php?budget=$id">
+                                                                            $name
+                                                                      </a>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-4">$amount</div>
+
+                                                                  <div class="col-md-6">
+                                                                    <div class="col-md-6">
                                                                     <a href="http://localhost:8000/administrator/user/$id/edit" class="btn btn-success">Edit</a>
-                                                                    <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                        <input class="btn btn-danger" type="submit" value="Delete">
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <form method="POST" action="http://localhost:8000/administrator/user/?delete=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                            <input class="btn btn-danger" type="submit" value="Delete">
+                                                                        </form>
+                                                                    </div>
+                                                                  </div>
+                                                                  </div>
+                                                              </div>
 OUTPUT;
                                         echo($output);
 
@@ -127,20 +142,21 @@ OUTPUT;
                         </div>
                     </div>
                 </div>
-            </div>
+
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Admin</h4>
-                <div class="input-group">
-                    <div><img src="" style="width:25px; height:25px"></div>
-                </div>
-                <!-- /.input-group -->
-            </div>
-
             <!-- Blog Categories Well -->
+            <div class="well">
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        <a href="index.php" class="btn btn-primary">
+                            <i class="fa fa-btn fa-sign-in"></i> Back to Budgets
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
             <div class="well">
                 <h4>Accounts</h4>
                 <div class="row">
@@ -176,10 +192,6 @@ OUTPUT;
                 <!-- /.row -->
             </div>
 
-            <!-- Side Widget Well -->
-            <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
 
         </div>

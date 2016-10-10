@@ -20,16 +20,33 @@ class Items
         $this->data=$this->db->connect();
     }
 
-    public function creating($request){
+    public static function creating($request){
+        $db=(new Sqlite())->connect();
         $name=$request['name'];
-        $value=$request['value'];
-        $budget_id=$request['budget'];
-        $status=0;
+        $amount=$request['amount'];
+        $budget_id=$request['budget_id'];
 
 
-        $query="INSERT INTO `".Items::TABLE."(name,value,budget_id,status)"."` values(".$name.",".$value.",".$budget_id.",".$status.")";
-        $this->data->query($query);
+
+        $query="INSERT INTO ".Items::TABLE."(name,amount,budget_id)"." values(:name,:amount,:budget_id)";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+            ':name' => $name,
+            ':amount'=>$amount,
+            ':budget_id'=>$budget_id
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+
+
 
     public static function getAllItemsInBudget($budgetid){
         $db=(new Sqlite())->connect();

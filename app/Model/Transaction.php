@@ -80,7 +80,7 @@ class Transaction
 
     public function getAllTransactions(){
         $this->db=new Sqlite();
-        $query="SELECT * FROM `".Transaction::TABLE."` ";
+        $query="SELECT * FROM ".Transaction::TABLE." ";
 
 
         return $this->db->getArray($query);
@@ -88,13 +88,13 @@ class Transaction
 
     public function getItems($itemId){
         $this->db=new Sqlite();
-        $query="SELECT * FROM `".Transaction::TABLE."` WHERE `id`=".$itemId." ";
+        $query="SELECT * FROM ".Transaction::TABLE." WHERE id=".$itemId." ";
         return $this->db->getArray($query);
     }
 
     public static function getAllTransactionsAccount($accountID){
         $db=(new Sqlite())->connect();
-        $query="SELECT * FROM `".Transaction::TABLE."` WHERE `account`=".$accountID." ";
+        $query="SELECT * FROM ".Transaction::TABLE." WHERE account=".$accountID." ";
         if($found=$db->query($query)){
             return $found->fetchAll(\PDO::FETCH_ASSOC);
         }
