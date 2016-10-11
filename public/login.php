@@ -32,7 +32,6 @@ if(isset($_POST['Login'])){
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Budget Management Login</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/home_page.css"></link>
 <link rel="stylesheet" href="css/welcome.css">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="css/main.css">
@@ -74,7 +73,7 @@ if(isset($_POST['Login'])){
   <div class="row container" style="margin-top:150px">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
-                <div class="modal-title">Plan and Implementation Of Port Harcourt Budget Management System</div>
+                <div class="modal-title"></div>
 
             </div>
             <div class="panel panel-default">

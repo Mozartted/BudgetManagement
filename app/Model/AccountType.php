@@ -23,7 +23,7 @@ class AccountType
 
     public static function getAllAccount(){
         $db=(new Sqlite())->connect();
-        $query="SELECT * FROM `".AccountType::TABLE."` ";
+        $query="SELECT * FROM ".AccountType::TABLE." ";
 
         if($found=$db->query($query)){
             return $found->fetchAll(\PDO::FETCH_ASSOC);

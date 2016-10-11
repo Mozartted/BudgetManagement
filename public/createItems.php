@@ -14,7 +14,7 @@ $session=SessionController::checkSessionKey();
 if($session==$_GET['key']){
 
 }else{
-    header("Location:login.php");
+
 }
 $accountId=$_GET['account'];
 

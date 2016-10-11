@@ -28,7 +28,7 @@ if(isset($_POST['DeleteBudget'])){
 
     if($status==true){
         echo("Created");
-        header("Location:../../public/index.php");
+        header("Location:../../public/yearview.php");
 
     }else{
         echo("Not Created Not Deleted");
@@ -76,7 +76,7 @@ if(isset($_POST['DeleteYear'])){
 
     if($status==true){
         echo("Created");
-        header("Location:../../public/index.php");
+        header("Location:../../public/yearview.php");
 
     }else{
         echo("Not Created Not Deleted");

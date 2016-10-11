@@ -68,7 +68,7 @@ class LoginController
                     $confirm_id=stripslashes($queryResult['id']);
                     $session=SessionController::createSession($confirm_id);
 
-                    header("Location:index.php?key=$session");
+                    header("Location:yearview.php?key=$session");
                 }else{
                     array_push($this->InfoAlert,"User does not exit in the database");
                 }

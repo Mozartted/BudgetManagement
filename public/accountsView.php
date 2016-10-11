@@ -115,9 +115,9 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                                             $output=<<<OUTPUT
                                                         <div class="list-group-item row">
                                                                   <div class="col-md-4">
-                                                                      <a href="budgetview.php?budget=$id">
+
                                                                             $name
-                                                                      </a>
+
                                                                   </div>
                                                                   <div class="col-md-6">
                                                                     <div class="col-md-3">

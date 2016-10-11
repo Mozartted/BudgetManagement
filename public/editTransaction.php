@@ -70,7 +70,7 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Create Account
+            <h1 class="page-header">Create Transaction
             </h1>
             <div class="row">
                 </hr>
@@ -190,29 +190,32 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
-                            <li><a href="#">Account Names</a>
-                            </li>
-                            <li><a href="#">Account Names2</a>
-                            </li>
-                            <li><a href="#">Others</a>
-                            </li>
-                            <li><a href="#">Domilcilary</a>
-                            </li>
+                            <?php
+                            foreach($collectAccount as $account ){
+                                $id=$account['id'];
+                                $name=$account['name'];
+                                $balance=$account['balance'];
+                                $output=<<<OUTPUT
+                                              <li><a href="accountsView.php?account=$id">$name</a><p>$balance</p>
+                                </li>
+OUTPUT;
+                                echo($output);
+
+                            }
+                            ?>
                         </ul>
                     </div>
                     <!-- /.col-lg-6 -->
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <p>Total</p>
+                    <?php
+                    $total=null;
+                    foreach($collectAccount as $account ){
+                        $balance=$account['balance'];
+                        $total=$total+$balance;
+                    }
+
+                    echo($total);
+                    ?>
                     <!-- /.col-lg-6 -->
                 </div>
                 <!-- /.row -->

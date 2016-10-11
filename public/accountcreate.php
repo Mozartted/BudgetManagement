@@ -170,28 +170,31 @@ OPTION;
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled">
-                                <li><a href="#">Account Names</a>
+                                <?php
+                                foreach($collectAccount as $account ){
+                                    $id=$account['id'];
+                                    $name=$account['name'];
+                                    $balance=$account['balance'];
+                                    $output=<<<OUTPUT
+                                              <li><a href="accountsView.php?account=$id">$name</a><p>$balance</p>
                                 </li>
-                                <li><a href="#">Account Names2</a>
-                                </li>
-                                <li><a href="#">Others</a>
-                                </li>
-                                <li><a href="#">Domilcilary</a>
-                                </li>
+OUTPUT;
+                                    echo($output);
+
+                                }
+                                ?>
                             </ul>
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
+                            <div class="row"><p>Total Balance</p><p>
+                                    <?php
+                                    $total=null;
+                                    foreach($collectAccount as $account ){
+                                        $balance=$account['balance'];
+                                        $total=$total+$balance;
+                                    }
+
+                                    echo($total);
+                                    ?></p>
+                            </div>
                         </div>
                         <!-- /.col-lg-6 -->
                     </div>

@@ -64,3 +64,8 @@ CREATE TABLE years(
 	date_end DATE DEFAULT NULL,
 	PRIMARY KEY(id)
 );
+
+
+INSERT INTO finance.users(name,email,password,group_id) VALUES('Nelson','nelson@gmail.com','Password1','1');
+INSERT INTO finance.users(name,email,password,group_id) VALUES('Mozart','jimmy@gmail.com','Password1','1');
+INSERT INTO finance.users(name,email,password,group_id) VALUES('Linkages','neek@gmail.com','Password1','1');

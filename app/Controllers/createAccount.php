@@ -11,7 +11,6 @@ if(isset($_POST['createAccount'])){
         'name'=>$_POST['name'],
         'balance'=>$_POST['balance'],
         'type'=>$_POST['type'],
-        'user'=>$user_id,
         'describ'=>$_POST['describ']
     ]);
 
@@ -62,7 +61,7 @@ if(isset($_POST['CreateBudget'])){
 
     if($status==true){
         echo("Created");
-        header("Location:../../public/index.php");
+        header("Location:../../public/yearview.php");
 
     }else{
         echo("Not Created Budget");
@@ -103,7 +102,7 @@ if(isset($_POST['CreateYear'])){
 
     if($status==true){
         echo("Created");
-        header("Location:../../public/index.php");
+        header("Location:../../public/yearview.php");
 
     }else{
         echo("Not Created Budget");
