@@ -54,6 +54,8 @@ if(isset($_POST['createTransaction'])){
 
         if($status==true){
             echo("Created");
+            session_start();
+            $_SESSION['errorList']=$errorList;
             header("Location:../../public/accountsView.php?account=$account");
 
         }else{
@@ -83,6 +85,8 @@ if(isset($_POST['CreateBudget'])){
 
         if($status==true){
             echo("Created");
+            session_start();
+            $_SESSION['errorList']=$errorList;
             header("Location:../../public/yearview.php");
 
         }else{
@@ -114,6 +118,8 @@ if(isset($_POST['CreateItem'])){
 
         if($status==true){
             echo("Created");
+            session_start();
+            $_SESSION['errorList']=$errorList;
             header("Location:../../public/budgetview.php?budget=$budget");
 
         }else{
