@@ -109,3 +109,16 @@ if(isset($_POST['CreateYear'])){
 
     }
 }
+
+
+if(isset($_POST['logout'])){
+    $status=\App\Controllers\SessionController::logout();
+    if($status==true){
+        header("Location:../../public/");
+
+    }else{
+        echo("Can't Log out");
+
+    }
+
+}

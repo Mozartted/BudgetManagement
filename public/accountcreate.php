@@ -56,6 +56,17 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                     </button>
                     <a class="navbar-brand topnav" href="#">Budget Management</a>
                 </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div>
+                                <form method="POST" action="../app/Controllers/createAccount.php" accept-charset="UTF-8">
+                                    <input class="btn btn-success" type="submit" name="logout" value="Logout">
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 
                 <!-- /.navbar-collapse -->

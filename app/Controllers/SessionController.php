@@ -24,5 +24,11 @@ class SessionController{
         return $session;
     }
 
+    //simple logout section to log out current user and return them to index
+    public static function logout(){
+        //collects closes session and returns user to logout.
+        session_destroy();
+        return true;
+    }
 }
 
