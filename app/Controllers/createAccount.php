@@ -7,45 +7,65 @@ use App\Model\Transaction as Transact;
 
 
 if(isset($_POST['createAccount'])){
-    $status=Account::creating([
-        'name'=>$_POST['name'],
-        'balance'=>$_POST['balance'],
-        'type'=>$_POST['type'],
-        'describ'=>$_POST['describ']
-    ]);
+    session_destroy();
+    $errorList=Account::verifyValues($_POST['name'],$_POST['describ'],$_POST['balance'],$_POST['type']);
 
-    if($status==true){
-        echo("Created");
-        header("Location:../../public/account.php");
+    if(empty($errorList)){
+        $status=Account::creating([
+            'name'=>$_POST['name'],
+            'balance'=>$_POST['balance'],
+            'type'=>$_POST['type'],
+            'describ'=>$_POST['describ']
+        ]);
 
+        if($status==true){
+            echo("Created");
+            session_start();
+            $_SESSION['errorList']=$errorList;
+            header("Location:../../public/account.php");
+
+        }else{
+            echo("Not Created");
+
+        }
     }else{
-        echo("Not Created");
-
+        session_start();
+        $_SESSION['errorList']=$errorList;
+        header("Location:../../public/accountcreate.php");
     }
+
 }
 
 if(isset($_POST['createTransaction'])){
-    $status=Transact::creating(
-        [
-            'name'=>$_POST['name'],
-            'amount'=>$_POST['amount'],
-            'type'=>$_POST['type'],
-            'describ'=>$_POST['describ'],
-            'account'=>$_POST['account'],
-            'date'=>$_POST['date'],
-        ]
-    );
+    $errorList=\App\Model\Transaction::verifyValues($_POST['name'],$_POST['describ'],$_POST['amount'],$_POST['type'],$_POST['account'],$_POST['date']);
+    if(empty($errorList)){
+        $status=Transact::creating(
+            [
+                'name'=>$_POST['name'],
+                'amount'=>$_POST['amount'],
+                'type'=>$_POST['type'],
+                'describ'=>$_POST['describ'],
+                'account'=>$_POST['account'],
+                'date'=>$_POST['date'],
+            ]
+        );
 
-    $account=$_POST['account'];
+        $account=$_POST['account'];
 
-    if($status==true){
-        echo("Created");
-        header("Location:../../public/accountsView.php?account=$account");
+        if($status==true){
+            echo("Created");
+            header("Location:../../public/accountsView.php?account=$account");
 
+        }else{
+            echo("Not Created Transaction");
+
+        }
     }else{
-        echo("Not Created Transaction");
-
+        session_start();
+        $_SESSION['errorList']=$errorList;
+        header("Location:../../public/editTransaction.php");
     }
+
 
 }
 

@@ -25,6 +25,9 @@ $budgetList=Budget::getAllBudget();
 $collectAccount=Account::getAllAccount();
 $transactions=Transaction::getAllTransactionsAccount($accountId);
 
+session_start();
+$errorList=$_SESSION['errorList'];
+
 ?>
 
 <!DOCTYPE html>
@@ -98,6 +101,11 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                                     <div class="panel panel-green">
                                         <div class="panel-heading" style="color:#202020;">Create Account</div>
                                         <div class="panel-body">
+                                            <?php
+                                            foreach($errorList as $listerror) {
+                                                echo("<div class='alert-info'>" .$listerror."</div>");
+                                            }
+                                            ?>
                                             <!--Displays the users and their levels Admin or writer-->
 
                                             <div>

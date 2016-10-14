@@ -47,6 +47,31 @@ class Account
         }
     }
 
+    public static function verifyValues($name,$descrip,$balance,$type)
+    {
+        $error_alert=[];
+
+        if ((empty($name))) {
+            array_push($error_alert, "fill in the name");
+        }
+
+        if (empty($descrip)) {
+            array_push($error_alert, "fill in the descriptions");
+        }
+
+        if(empty($balance)) {
+            array_push($error_alert, "The Opening balance is numbers only");
+        }
+
+        if (empty($type)) {
+            array_push($error_alert, "fill in the opening balance");
+        }
+
+        return $error_alert;
+
+    }
+
+
 
     //function to perform delete operations,You are suppose to know this kind of..
     public static function delete($AccountId){

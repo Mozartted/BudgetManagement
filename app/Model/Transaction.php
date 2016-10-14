@@ -72,7 +72,37 @@ class Transaction
             return false;
         }
 
+    }
 
+    public static function verifyValues($name,$description,$amount,$type,$account,$datee)
+    {
+        $error_alert=[];
+
+        if ((empty($name))) {
+            array_push($error_alert, "fill in the name");
+        }
+
+        if (empty($description)) {
+            array_push($error_alert, "fill in the descriptions");
+        }
+
+        if (empty($amount)) {
+            array_push($error_alert, "fill in the amount");
+        }
+
+        if (empty($type)) {
+            array_push($error_alert, "select the transaction type");
+        }
+
+        if (empty($account)) {
+            array_push($error_alert, "select in the account selection");
+        }
+
+        if (empty($datee)) {
+            array_push($error_alert, "fill in the date");
+        }
+
+        return $error_alert;
 
     }
 
