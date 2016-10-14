@@ -18,14 +18,32 @@ class Year
 
     }
 
+    public static function verifyValues($name,$begin,$end)
+    {
+        $error_alert=[];
+
+        if ((empty($name))) {
+            array_push($error_alert, "fill in the name");
+        }
+
+        if (empty($begin)) {
+            array_push($error_alert, "select a beginning date");
+        }
+
+        if(empty($end)) {
+            array_push($error_alert, "select an ending date");
+        }
+
+
+        return $error_alert;
+
+    }
+
     public static function creating($request){
         $db=(new Sqlite())->connect();
         $name=$request['name'];
         $begin=$request['begin'];
         $end=$request['end'];
-
-
-
 
         $query="INSERT INTO ".Year::TABLE."(name,date_begin,date_end)"."values(:name,:begin,:end)";
 

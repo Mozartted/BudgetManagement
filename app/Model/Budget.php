@@ -20,6 +20,26 @@ class Budget
 
     }
 
+    public static function verifyValues($name,$describ,$year)
+    {
+        $error_alert=[];
+
+        if ((empty($name))) {
+            array_push($error_alert, "fill in the name");
+        }
+
+        if (empty($describ)) {
+            array_push($error_alert, "enter a description");
+        }
+
+        if (empty($year)) {
+            array_push($error_alert, "select the budget year");
+        }
+
+        return $error_alert;
+
+    }
+
     public static function creating($request){
         $db=(new Sqlite())->connect();
         $name=$request['name'];

@@ -71,63 +71,88 @@ if(isset($_POST['createTransaction'])){
 
 
 if(isset($_POST['CreateBudget'])){
-    $status=\App\Model\Budget::creating(
-        [
-            'name'=>$_POST['name'],
-            'describ'=>$_POST['describ'],
-            'year'=>$_POST['year'],
-        ]
-    );
+    $errorList=\App\Model\Budget::verifyValues($_POST['name'],$_POST['describ'],$_POST['year']);
+    if(empty($errorList)){
+        $status=\App\Model\Budget::creating(
+            [
+                'name'=>$_POST['name'],
+                'describ'=>$_POST['describ'],
+                'year'=>$_POST['year'],
+            ]
+        );
 
-    if($status==true){
-        echo("Created");
-        header("Location:../../public/yearview.php");
+        if($status==true){
+            echo("Created");
+            header("Location:../../public/yearview.php");
 
+        }else{
+            echo("Not Created Budget");
+
+        }
     }else{
-        echo("Not Created Budget");
-
+        session_start();
+        $_SESSION['errorList']=$errorList;
+        header("Location:../../public/createBudget.php");
     }
+
+
+
 }
 
 if(isset($_POST['CreateItem'])){
-    $status=\App\Model\Items::creating(
-        [
-            'name'=>$_POST['name'],
-            'amount'=>$_POST['amount'],
-            'budget_id'=>$_POST['budget_id']
-        ]
-    );
+    $errorList=\App\Model\Items::verifyValues($_POST['name'],$_POST['amount'],$_POST['budget_id']);
+    if(empty($errorList)){
+        $status=\App\Model\Items::creating(
+            [
+                'name'=>$_POST['name'],
+                'amount'=>$_POST['amount'],
+                'budget_id'=>$_POST['budget_id']
+            ]
+        );
 
-    $budget=$_POST['budget_id'];
+        $budget=$_POST['budget_id'];
 
-    if($status==true){
-        echo("Created");
-        header("Location:../../public/budgetview.php?budget=$budget");
+        if($status==true){
+            echo("Created");
+            header("Location:../../public/budgetview.php?budget=$budget");
 
+        }else{
+            echo("Not Created Budget");
+
+        }
     }else{
-        echo("Not Created Budget");
-
+        session_start();
+        $_SESSION['errorList']=$errorList;
+        header("Location:../../public/createItems.php");
     }
 
 }
 
 if(isset($_POST['CreateYear'])){
-    $status=\App\Model\Year::creating(
-        [
-            'name'=>$_POST['name'],
-            'begin'=>$_POST['begin'],
-            'end'=>$_POST['end'],
-        ]
-    );
+    $errorList=\App\Model\Items::verifyValues($_POST['name'],$_POST['begin'],$_POST['end']);
+    if(empty($errorList)){
+        $status=\App\Model\Year::creating(
+            [
+                'name'=>$_POST['name'],
+                'begin'=>$_POST['begin'],
+                'end'=>$_POST['end'],
+            ]
+        );
 
-    if($status==true){
-        echo("Created");
-        header("Location:../../public/yearview.php");
+        if($status==true){
+            echo("Created");
+            header("Location:../../public/yearview.php");
 
+        }else{
+            echo("Not Created Budget");
+
+        }
     }else{
-        echo("Not Created Budget");
-
+        session_start();
+        $_SESSION['errorList']=$errorList;
+        header("Location:../../public/createyear.php");
     }
+
 }
 
 

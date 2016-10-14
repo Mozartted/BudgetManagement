@@ -20,6 +20,26 @@ class Items
         $this->data=$this->db->connect();
     }
 
+    public static function verifyValues($name,$amount,$budget_id)
+    {
+        $error_alert=[];
+
+        if ((empty($name))) {
+            array_push($error_alert, "fill in the name");
+        }
+
+        if (empty($amount)) {
+            array_push($error_alert, "fill in the amount");
+        }
+
+        if (empty($budget_id)) {
+            array_push($error_alert, "select the budget Affected");
+        }
+
+        return $error_alert;
+
+    }
+
     public static function creating($request){
         $db=(new Sqlite())->connect();
         $name=$request['name'];
