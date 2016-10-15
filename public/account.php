@@ -110,6 +110,11 @@ $collectAccount=Account::getAllAccount();
                                                                     </div>
 
                                                                     <div class="col-md-6">
+                                                                        <div class="col-md-6">
+                                                                            <a href="account_edit.php?account=$id">
+                                                                                 <input class="btn btn-danger" type="submit" value="Edit">
+                                                                            </a>
+                                                                        </div>
 
                                                                         <div class="col-md-6">
                                                                             <form method="POST" action="../app/Controllers/operationDelete.php?transaction=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">

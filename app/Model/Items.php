@@ -113,4 +113,30 @@ class Items
         }
     }
 
+    public static function updateItem($data,$ItemId){
+        $name=$data['name'];
+        $budget_id=$data['budget_id'];
+        $amount=$data['amount'];
+
+
+        $db=(new Sqlite())->connect();
+        $query="UPDATE items SET `name`=:name, `amount`=:amount, `budget_id`=:budget_id WHERE `id`=$ItemId ";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+
+            ':name' => $name,
+            ':amount' => $amount,
+            ':budget_id'=>$budget_id,
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            echo"Update not working";
+        }
+    }
+
 }

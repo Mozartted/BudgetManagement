@@ -121,6 +121,11 @@ $collectAccount=Account::getAllAccount();
                                                                     <div class="col-md-4">$amount</div>
 
                                                                   <div class="col-md-6">
+                                                                  <div class="col-md-6">
+                                                                            <a href="item_edit.php?item=$id">
+                                                                                 <input class="btn btn-success" type="submit" value="Edit">
+                                                                            </a>
+                                                                        </div>
 
                                                                     <div class="col-md-6">
                                                                         <form method="POST" action="../app/Controllers/operationDelete.php?item=$id" accept-charset="UTF-8">
@@ -154,7 +159,7 @@ OUTPUT;
             <div class="col-lg-12">
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <a href="index.php" class="btn btn-primary">
+                        <a href="yearview.php" class="btn btn-primary">
                             <i class="fa fa-btn fa-sign-in"></i> Back to Years
                         </a>
                     </div>

@@ -109,14 +109,42 @@ class Account
         }
     }
 
+
+    public static function updateAccount($data,$AccountId){
+        $name=$data['name'];
+        $describ=$data['describ'];
+        $balance=$data['balance'];
+        $type=$data['type'];
+
+        $db=(new Sqlite())->connect();
+        $query="UPDATE accounts SET `name`=:name, `describ`=:describ, `balance`=:balance, `type`=:type WHERE `id`=$AccountId ";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+
+            ':name' => $name,
+            ':describ' => $describ,
+            ':balance'=>$balance,
+            ':type'=>$type,
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            echo"Update not working";
+        }
+    }
+
     public static function getAccount($AccountId){
         $db=(new Sqlite())->connect();
-        $query="SELECT * FROM `".Account::TABLE."` WHERE `id`=".$AccountId." ";
+        $query="SELECT * FROM ".Account::TABLE." WHERE id=".$AccountId." ";
         if($found=$db->query($query)){
             return $found->fetch(\PDO::FETCH_ASSOC);
         }
         else{
-            return [];
+            echo "No Account retrieved";
         }
     }
 
@@ -130,6 +158,8 @@ class Account
             echo"Update not working";
         }
     }
+
+
 
 
 }

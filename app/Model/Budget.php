@@ -67,6 +67,34 @@ class Budget
         }
     }
 
+
+    public static function updateBudget($data,$BudgetId){
+        $name=$data['name'];
+        $describ=$data['describ'];
+        $amount=$data['amount'];
+        $year=$data['year'];
+
+        $db=(new Sqlite())->connect();
+        $query="UPDATE budgets SET `name`=:name, `describ`=:describ, `amount`=:amount, `year`=:year WHERE `id`=$BudgetId ";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+
+            ':name' => $name,
+            ':describ' => $describ,
+            ':amount'=>$amount,
+            ':year'=>$year,
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            echo"Update not working";
+        }
+    }
+
     public static function getAllBudget(){
         $db=(new Sqlite())->connect();
         $query="SELECT * FROM ".Budget::TABLE." ";
@@ -79,10 +107,10 @@ class Budget
         }
     }
 
-    public function getBudget($budgetId){
-        $this->db=(new Sqlite())->connect();
+    public static function getBudget($budgetId){
+        $db=(new Sqlite())->connect();
         $query="SELECT * FROM ".Budget::TABLE." WHERE id=".$budgetId." ";
-        if($found=$this->db->query($query)){
+        if($found=$db->query($query)){
             return $found->fetch(\PDO::FETCH_ASSOC);
         }
         else{

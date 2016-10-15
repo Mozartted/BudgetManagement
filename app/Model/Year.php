@@ -65,11 +65,48 @@ class Year
         }
     }
 
+    public static function updateYear($data,$YearId){
+        $name=$data['name'];
+        $begin=$data['begin'];
+        $end=$data['end'];
+
+
+        $db=(new Sqlite())->connect();
+        $query="UPDATE years SET `name`=:name, `date_begin`=:begin, `date_end`=:end WHERE `id`=$YearId ";
+
+        $querying=$db->prepare($query);
+
+        $queried=$querying->execute([
+            ':name' => $name,
+            ':begin' => $begin,
+            ':end'=>$end
+        ]);
+
+        if($queried){
+            return true;
+        }
+        else{
+            echo"Update not working";
+        }
+    }
+
+
     public static function getAllYears(){
         $db=(new Sqlite())->connect();
         $query="SELECT * FROM ".Year::TABLE." ";
         if($found=$db->query($query)){
             return $found->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        else{
+            return [];
+        }
+    }
+
+    public static function getYear($YearId){
+        $db=(new Sqlite())->connect();
+        $query="SELECT * FROM ".Year::TABLE." WHERE id=".$YearId." ";
+        if($found=$db->query($query)){
+            return $found->fetch(\PDO::FETCH_ASSOC);
         }
         else{
             return [];

@@ -4,6 +4,14 @@ require"../../vendor/autoload.php";
 use App\Model\Account as Account;
 use App\Model\Transaction as Transact;
 
+$the_account=$_GET['account'];
+echo "This is the account no".$the_account;
+
+$the_budget=$_GET['budget'];
+
+$the_year=$_GET['year'];
+
+$the_item=$_GET['item'];
 
 
 if(isset($_POST['createAccount'])){
@@ -83,11 +91,15 @@ if(isset($_POST['CreateBudget'])){
             ]
         );
 
+        $budgetStuff=\App\Model\Budget::getBudgetInYear($_POST['year']);
+
         if($status==true){
             echo("Created");
             session_start();
             $_SESSION['errorList']=$errorList;
-            header("Location:../../public/yearview.php");
+
+            $year=$budgetStuff['year'];
+            header("Location:../../public/budgetsList.php?year=$year");
 
         }else{
             echo("Not Created Budget");
@@ -147,6 +159,8 @@ if(isset($_POST['CreateYear'])){
 
         if($status==true){
             echo("Created");
+            session_start();
+            $_SESSION['errorList']=$errorList;
             header("Location:../../public/yearview.php");
 
         }else{
@@ -172,4 +186,106 @@ if(isset($_POST['logout'])){
 
     }
 
+}
+
+
+if(isset($_POST['UpdateAccount'])){
+    $status=Account::updateAccount([
+        'name'=>$_POST['name'],
+        'balance'=>$_POST['balance'],
+        'type'=>$_POST['type'],
+        'describ'=>$_POST['describ']
+    ],$the_account);
+
+    foreach ($_POST as $key => $value)
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+
+    if($status==true){
+        echo("Updated");
+        header("Location:../../public/account.php");
+
+    }else{
+        echo("Not Updated");
+
+    }
+
+}
+
+if(isset($_POST['UpdateBudget'])){
+
+    $status=\App\Model\Budget::updateBudget([
+        'name'=>$_POST['name'],
+        'amount'=>$_POST['balance'],
+        'year'=>$_POST['year'],
+        'describ'=>$_POST['describ']
+    ],$the_budget);
+
+    foreach ($_POST as $key => $value)
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+
+
+    $budgetInfo=\App\Model\Budget::getBudget($the_budget);
+    $year=$budgetInfo['year'];
+
+    if($status==true){
+        echo("Updated");
+        header("Location:../../public/budgetsList.php?year=$year");
+
+    }else{
+        echo("Not Updated");
+
+    }
+
+}
+
+if(isset($_POST['UpdateYear'])){
+
+    $status=\App\Model\Year::updateYear([
+        'name'=>$_POST['name'],
+        'begin'=>$_POST['begin'],
+        'end'=>$_POST['end'],
+
+    ],$the_year);
+
+    foreach ($_POST as $key => $value)
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+
+    if($status==true){
+        echo("Updated");
+        header("Location:../../public/yearview.php");
+
+    }else{
+        echo("Not Updated");
+
+    }
+
+}
+
+if(isset($_POST['UpdateItem'])){
+    $status=\App\Model\Items::updateItem([
+        'name'=>$_POST['name'],
+        'amount'=>$_POST['amount'],
+        'budget_id'=>$_POST['budget_id'],
+
+    ],$the_item);
+
+    foreach ($_POST as $key => $value)
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+
+
+    $budgetInfo=\App\Model\Items::getItem($the_item);
+    $budget=$budgetInfo['budget_id'];
+
+    if($status==true){
+        echo("Updated");
+        header("Location:../../public/budgetview.php?budget=$budget");
+
+    }else{
+        echo("Not Updated");
+
+    }
 }
