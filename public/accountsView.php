@@ -113,9 +113,9 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                                             $date=$transact['date'];
                                             $type="";
                                             if($transact['type']==1){
-                                                $type="Income";
-                                            }else if($transact['type']==0){
                                                 $type="Expense";
+                                            }else if($transact['type']==2){
+                                                $type="Income";
                                             }
 
                                             $output=<<<OUTPUT
@@ -138,6 +138,11 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 
                                                                     <div class="col-md-6">
+                                                                    <div class="col-md-6">
+                                                                            <a href="edittedTransaction.php?transaction=$id">
+                                                                                 <input class="btn btn-success" type="submit" value="Edit">
+                                                                            </a>
+                                                                        </div>
 
                                                                         <div class="col-md-6">
                                                                             <form method="POST" action="../app/Controllers/operationDelete.php?transaction=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">

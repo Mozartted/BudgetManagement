@@ -21,6 +21,10 @@ $accountId=$_GET['account'];
 $accountType=AccountType::getAllAccount();
 $account=Account::getAllAccount();
 
+$trans=$_GET['transaction'];
+
+$TransInfo=\App\Model\Transaction::getTransact($trans);
+
 //getting all in budget
 $budgetList=Budget::getAllBudget();
 $collectAccount=Account::getAllAccount();
@@ -110,12 +114,12 @@ $errorList=$_SESSION['errorList'];
                                 <!--Displays the users and their levels Admin or writer-->
 
                                 <div>
-                                    <form class="form-horizontal" role="form" method="POST" action="../app/Controllers/createAccount.php">
+                                    <form class="form-horizontal" role="form" method="POST" action="../app/Controllers/createAccount.php?transaction=<?php echo $trans?>">
                                         <div class="form-group">
                                             <label for="name" class="col-md-4 control-label">Name</label>
 
                                             <div class="col-md-6">
-                                                <input  class="form-control" name="name" value="">
+                                                <input  class="form-control" name="name" value="<?php echo $TransInfo['name']?>">
                                             </div>
                                         </div>
 
@@ -123,7 +127,7 @@ $errorList=$_SESSION['errorList'];
                                             <label for="balance" class="col-md-4 control-label">Transaction Amount</label>
 
                                             <div class="col-md-6">
-                                                <input  type="number" class="form-control" name="amount">
+                                                <input  type="number" class="form-control" name="amount" value="<?php echo $TransInfo['amount']?>">
 
                                             </div>
                                         </div>
@@ -132,7 +136,7 @@ $errorList=$_SESSION['errorList'];
                                             <label for="describ" class="col-md-4 control-label">Description</label>
 
                                             <div class="col-md-6">
-                                                <textarea  type="text" class="form-control" name="describ"></textarea>
+                                                <textarea  type="text" class="form-control" name="describ"><?php echo $TransInfo['description']?></textarea>
 
                                             </div>
                                         </div>
@@ -141,7 +145,7 @@ $errorList=$_SESSION['errorList'];
                                             <label for="date" class="col-md-4 control-label">Transaction Date</label>
 
                                             <div class="col-md-6">
-                                                <input type="date" class="form-control" name="date">
+                                                <input type="date" class="form-control" name="date" value="<?php echo $TransInfo['datee']?>">
                                             </div>
                                         </div>
 
@@ -160,17 +164,17 @@ $errorList=$_SESSION['errorList'];
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="account" class="col-md-4 control-label">Select Account</label>
+                                            <label for="password" class="col-md-4 control-label">Select Account</label>
 
                                             <div class="col-md-6">
-                                                <select class="form-control" name="account">
+                                                <select  class="form-control" name="account">
                                                     <?php
-                                                        foreach($account as $acc){
-                                                            $ac_id=$acc['id'];
-                                                            $ac_name=$acc['name'];
+                                                    foreach($account as $acc){
+                                                        $ac_id=$acc['id'];
+                                                        $ac_name=$acc['name'];
 
-                                                            echo "<option value='$ac_id'>$ac_name </option>";
-                                                        }
+                                                        echo "<option value='$ac_id'>$ac_name </option>";
+                                                    }
 
                                                     ?>
                                                 </select>
@@ -181,8 +185,8 @@ $errorList=$_SESSION['errorList'];
 
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4">
-                                                <button type="submit" class="btn btn-primary" name="createTransaction">
-                                                    <i class="fa fa-btn fa-sign-in"></i> Create Transaction
+                                                <button type="submit" class="btn btn-primary" name="UpdateTransaction">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Update Transaction
                                                 </button>
                                             </div>
                                         </div>
@@ -254,3 +258,4 @@ OUTPUT;
 <script src="js/vendor/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body></html>
+*/

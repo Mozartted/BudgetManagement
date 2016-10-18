@@ -13,6 +13,8 @@ $the_year=$_GET['year'];
 
 $the_item=$_GET['item'];
 
+$the_transID=$_GET['transaction'];
+
 
 if(isset($_POST['createAccount'])){
     session_destroy();
@@ -283,6 +285,35 @@ if(isset($_POST['UpdateItem'])){
     if($status==true){
         echo("Updated");
         header("Location:../../public/budgetview.php?budget=$budget");
+
+    }else{
+        echo("Not Updated");
+
+    }
+}
+
+if(isset($_POST['UpdateTransaction'])){
+    $status=\App\Model\Transaction::updateTransaction([
+            'name'=>$_POST['name'],
+            'amount'=>$_POST['amount'],
+            'type'=>$_POST['type'],
+            'describ'=>$_POST['describ'],
+            'account'=>$_POST['account'],
+            'date'=>$_POST['date'],
+        ]
+    ,$the_transID);
+
+    foreach ($_POST as $key => $value)
+        echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+
+
+
+    $TransInfo=\App\Model\Transaction::getTransact($the_transID);
+    $accountt=$TransInfo['account'];
+
+    if($status==true){
+        echo("Updated");
+        header("Location:../../public/accountsView.php?account=$accountt");
 
     }else{
         echo("Not Updated");

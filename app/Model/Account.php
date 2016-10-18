@@ -70,9 +70,6 @@ class Account
         return $error_alert;
 
     }
-
-
-
     //function to perform delete operations,You are suppose to know this kind of..
     public static function delete($AccountId){
         $db=(new Sqlite())->connect();
@@ -155,7 +152,7 @@ class Account
             return true;
         }
         else{
-            echo"Update not working";
+            echo"Updating of the Account not working";
         }
     }
 

@@ -80,7 +80,7 @@ $collectAccount=Account::getAllAccount();
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body" style="overflow-y: scroll; max-height: 700px;">
                                 <!--Displays the users and their levels Admin or writer-->
 
                                 <div class="panel panel-default">
@@ -104,12 +104,12 @@ $collectAccount=Account::getAllAccount();
                                                                       </a>
                                                                   </div>
                                                                   <div class="col-md-6">
-                                                                    <div class="col-md-4">$begin</div>
-                                                                    <div class="col-md-4">$end</div>
+                                                                    <div class="col-md-4"><p>Year begins</p>$begin</div>
+                                                                    <div class="col-md-4"><p>Year ends</p>$end</div>
                                                                   <div class="col-md-6">
                                                                   <div class="col-md-6">
                                                                             <a href="year_edit.php?year=$id">
-                                                                                 <input class="btn btn-danger" type="submit" value="Edit">
+                                                                                 <input class="btn btn-success" type="submit" value="Edit">
                                                                             </a>
                                                                         </div>
 

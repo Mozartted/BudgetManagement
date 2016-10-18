@@ -8,7 +8,7 @@
 
 namespace App\Model;
 use App\SQLiteConnection as Sqlite;
-use App\Model\Account;
+use App\Model\Account as Account;
 
 class Transaction
 {
@@ -41,9 +41,9 @@ class Transaction
         $currentBalance=$account['balance'];
         $balance=null;
 
-        if($transType==0){
+        if($transType==1){
              $balance=$currentBalance-$amount;
-        }elseif($transType==1){
+        }elseif($transType==2){
             $balance=$currentBalance+$amount;
         }
 
@@ -162,6 +162,95 @@ class Transaction
         }
         else{
             return false;
+        }
+    }
+
+    public static function updateTransaction($data,$trans_id){
+        $name=$data['name'];
+        $amount=$data['amount'];
+        $transType=$data['type'];
+        $descrip=$data['describ'];
+        $acc_id=$data['account'];
+        $datee=$data['date'];
+
+        /*Step 1: Get the transaction info using the transaction's id, $trans_id
+         * Step2: using the transInfo get the affected account's info
+         * Step3: Update the account by performing nessecary calculations
+         * Step4: Update the Transaction Itself.
+         * */
+
+        //getting Transaction's Info
+        $TransInfo=Transaction::getTransact($trans_id);
+
+        //getting the account's info
+        $accountInfo=Account::getAccount($TransInfo['account']);
+
+        $repBalance=$accountInfo['balance'];
+        $repAmount=$TransInfo['amount'];
+        $repType=$TransInfo['type'];
+
+        $done=null;
+
+        //if income, minus from account,if expense add to Account
+
+
+        //reset balance
+        if($repType==1){
+            $repBalance=$repBalance+$repAmount;
+
+        }else if($repType==2){
+            $repBalance=$repBalance-$repAmount;
+        }
+
+        $status=Account::updateAccountAmount($TransInfo['account'],$repBalance);
+
+        if($status==true){
+            //performing the full transaction update step
+
+            $db=(new Sqlite())->connect();
+
+
+            $account=Account::getAccount($acc_id);
+
+            $currentBalance=$account['balance'];
+            $balance=null;
+
+            if($transType==1){
+                $balance=$currentBalance-$amount;
+            }elseif($transType==2){
+                $balance=$currentBalance+$amount;
+            }
+
+            $update=Account::updateAccountAmount($acc_id,$balance);
+            $id=$TransInfo['id'];
+
+            if($update==true){
+
+                $query="UPDATE transactions SET `name`=:name, `amount`=:amount, `description`=:describ, `type`=:type, `account`=:account, `datee`=:datee WHERE `id`=$id";
+                $querying=$db->prepare($query);
+
+                $queried=$querying->execute([
+                    ':name'=>$name,
+                    ':describ'=>$descrip,
+                    ':amount'=>$amount,
+                    ':type'=>$transType,
+                    ':account'=>$acc_id,
+                    ':datee'=>$datee,
+                ]);
+
+                if($queried){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }else{
+                echo "\n Second update Account not working \n";
+                return false;
+            }
+
+        }else{
+            echo "\n First update account not working \n";
         }
     }
 }
