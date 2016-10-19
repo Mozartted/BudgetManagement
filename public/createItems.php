@@ -16,7 +16,12 @@ if($session==$_GET['key']){
 }else{
 
 }
-$accountId=$_GET['account'];
+
+$accountId=null;
+if(isset($_GET['account'])){
+    $accountId=$_GET['account'];
+}
+
 
 $accountType=AccountType::getAllAccount();
 $account=Account::getAllAccount();
@@ -27,7 +32,10 @@ $collectAccount=Account::getAllAccount();
 $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 session_start();
-$errorList=$_SESSION['errorList'];
+if(isset($_SESSION['errorList'])){
+    $errorList=$_SESSION['errorList'];
+}
+
 
 ?>
 

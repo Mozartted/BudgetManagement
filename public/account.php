@@ -9,10 +9,14 @@ require_once '../vendor/autoload.php';
 $session=SessionController::checkSessionKey();
 
 
-if($session==$_GET['key']){
 
-}else{
+if(isset($_GET['key'])){
 
+    if($session==$_GET['key']){
+
+    }else{
+        header("Location:login.php");
+    }
 }
 
 //getting all in budget

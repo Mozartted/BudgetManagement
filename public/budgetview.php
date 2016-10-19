@@ -8,14 +8,21 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+if(isset($_GET['key'])){
+    if($session==$_GET['key']){
 
-if($session==$_GET['key']){
+    }else{
 
-}else{
-
+    }
 }
 
-$budget_id=$_GET['budget'];
+
+$budget_id=null;
+if(isset($_GET['budget'])){
+    $budget_id=$_GET['budget'];
+}
+
+
 $budgetInfo=(new Budget())->getBudget($budget_id);
 
 

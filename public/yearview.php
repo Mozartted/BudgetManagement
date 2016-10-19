@@ -6,7 +6,9 @@ use App\Model\Account;
 require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
-$year=$_GET['year'];
+if(isset($_GET['year'])) {
+    $year = $_GET['year'];
+}
 
 if(isset($session)){
 

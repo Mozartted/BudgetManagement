@@ -16,12 +16,20 @@ if($session==$_GET['key']){
 }else{
     header("Location:login.php");
 }
-$accountId=$_GET['account'];
+
+if(isset($_GET['account'])){
+    $accountId=$_GET['account'];
+}
+
 
 $accountType=AccountType::getAllAccount();
 $account=Account::getAllAccount();
 
-$trans=$_GET['transaction'];
+$trans=null;
+if(isset($_GET['transaction'])){
+    $trans=$_GET['transaction'];
+}
+
 
 $TransInfo=\App\Model\Transaction::getTransact($trans);
 
@@ -31,7 +39,10 @@ $collectAccount=Account::getAllAccount();
 $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 session_start();
-$errorList=$_SESSION['errorList'];
+if(isset($_SESSION['errorList'])){
+    $errorList=$_SESSION['errorList'];
+}
+
 
 ?>
 

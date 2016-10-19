@@ -10,13 +10,18 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+if(isset($_GET['key'])){
+    if($session==$_GET['key']){
 
-if($session==$_GET['key']){
-
-}else{
-    header("Location:login.php");
+    }else{
+        header("Location:login.php");
+    }
 }
-$budgetId=$_GET['budget'];
+$budgetId=null;
+if(isset($_GET['budget'])){
+    $budgetId=$_GET['budget'];
+}
+
 
 $accountType=AccountType::getAllAccount();
 $account=Account::getAllAccount();
@@ -28,7 +33,9 @@ $years=\App\Model\Year::getAllYears();
 
 
 session_start();
-$errorList=$_SESSION['errorList'];
+if(isset($_SESSION['errorList'])){
+    $errorList=$_SESSION['errorList'];
+}
 
 //getting all in account
 $collectAccount=Account::getAllAccount();

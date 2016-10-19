@@ -16,8 +16,19 @@ if($session==$_GET['key']){
 }else{
     header("Location:login.php");
 }
-$accountId=$_GET['account'];
-$YearId=$_GET['year'];
+
+$accountId=null;
+
+if(isset($_GET['account'])){
+    $accountId=$_GET['account'];
+}
+
+$YearId=null;
+if(isset($_GET['year'])){
+    $YearId=$_GET['year'];
+}
+
+
 
 $YearInfo=\App\Model\Year::getYear($YearId);
 
@@ -31,7 +42,10 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 
 session_start();
-$errorList=$_SESSION['errorList'];
+if(isset($_SESSION['errorList'])){
+    $errorList=$_SESSION['errorList'];
+}
+
 
 ?>
 

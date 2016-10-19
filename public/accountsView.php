@@ -10,12 +10,19 @@ require_once '../vendor/autoload.php';
 $session=SessionController::checkSessionKey();
 
 
-if($session==$_GET['key']){
+if(isset($_GET['key'])){
 
-}else{
-    header("Location:login.php");
+    if($session==$_GET['key']){
+
+    }else{
+        header("Location:login.php");
+    }
 }
-$accountId=$_GET['account'];
+
+$accountId=null;
+if(isset($_GET['account'])){
+    $accountId=$_GET['account'];
+}
 
 $account=(new Account())->getAccount($accountId);
 
