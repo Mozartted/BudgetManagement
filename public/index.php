@@ -43,13 +43,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand topnav" href="#">Budget Management</a>
+            <a class="navbar-brand topnav" href="#" style="font-size: 20px">Budget Management</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="login.php">Login</a>
+                    <a href="login.php" class="">Login</a>
                 </li>
             </ul>
         </div>

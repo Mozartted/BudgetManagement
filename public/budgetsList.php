@@ -7,6 +7,8 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
+
 $year=null;
 if(isset($_GET['year'])){
     $year=$_GET['year'];

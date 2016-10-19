@@ -10,7 +10,7 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
-
+$errorList=array();
 
 if(isset($_GET['key'])){
 
@@ -35,7 +35,11 @@ $collectAccount=Account::getAllAccount();
 $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 session_start();
-$errorList=$_SESSION['errorList'];
+if(isset($_SESSION['errorList'])){
+    $errorList=$_SESSION['errorList'];
+}
+$_SESSION['errorList']="";
+session_destroy();
 
 ?>
 
@@ -168,15 +172,21 @@ OPTION;
                                                   </div>
 
 
-
                                                   <div class="form-group">
-                                                      <div class="col-md-6 col-md-offset-4">
+                                                      <div class="col-md-3 col-md-offset-4">
                                                           <button type="submit" class="btn btn-primary" name="createAccount">
                                                               <i class="fa fa-btn fa-sign-in"></i> Create Account
                                                           </button>
                                                       </div>
+                                                      <div class="col-md-3">
+                                                          <a href="account.php" class="btn btn-primary">
+                                                                  <i class="fa fa-btn fa-sign-in"></i> Back
+                                                          </a>
+                                                      </div>
                                                   </div>
                                               </form>
+
+                                                <!--account=<?php echo $accountId?>-->
 
 
 

@@ -8,6 +8,8 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
+
 if(isset($_GET['key'])){
     if($session==$_GET['key']){
 

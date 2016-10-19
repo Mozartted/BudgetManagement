@@ -9,6 +9,7 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
 
 if(isset($_GET['key'])){
 
@@ -117,7 +118,7 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
                                             $id=$transact['id'];
                                             $name=$transact['name'];
                                             $amount=$transact['amount'];
-                                            $date=$transact['date'];
+                                            $date=$transact['datee'];
                                             $type="";
                                             if($transact['type']==1){
                                                 $type="Expense";

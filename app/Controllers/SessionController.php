@@ -11,7 +11,8 @@ class SessionController{
 
     public static function createSession($key){
         session_start();
-        $_SESSION['coded']=$key;
+        if(isset($_SESSION['coded']))
+            $_SESSION['coded']=$key;
 
         session_cache_expire(180);
 
@@ -19,7 +20,9 @@ class SessionController{
     }
 
     public static function checkSessionKey(){
-        $session=$_SESSION['coded'];
+        $session=null;
+        if(isset($_SESSION['coded']))
+            $session=$_SESSION['coded'];
 
         return $session;
     }

@@ -10,6 +10,7 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
 
 if($session==$_GET['key']){
 
@@ -37,7 +38,8 @@ if(isset($_SESSION['errorList'])){
     $errorList=$_SESSION['errorList'];
 }
 
-
+$_SESSION['errorList']="";
+session_destroy();
 ?>
 
 <!DOCTYPE html>

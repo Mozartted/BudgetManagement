@@ -10,6 +10,8 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
+
 if(isset($_GET['key'])){
     if($session==$_GET['key']){
 
@@ -36,6 +38,9 @@ session_start();
 if(isset($_SESSION['errorList'])){
     $errorList=$_SESSION['errorList'];
 }
+
+$_SESSION['errorList']="";
+session_destroy();
 
 //getting all in account
 $collectAccount=Account::getAllAccount();
@@ -161,12 +166,18 @@ $collectAccount=Account::getAllAccount();
 
 
                                         <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4">
+                                            <div class="col-md-3 col-md-offset-4">
                                                 <button type="submit" class="btn btn-primary" name="UpdateBudget">
                                                     <i class="fa fa-btn fa-sign-in"></i> Update Budget
                                                 </button>
                                             </div>
+                                            <div class="col-md-3">
+                                                <a href="budgetsList.php" class="btn btn-primary">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Back
+                                                </a>
+                                            </div>
                                         </div>
+
                                     </form>
 
 

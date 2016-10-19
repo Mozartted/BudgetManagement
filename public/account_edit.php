@@ -10,6 +10,8 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
+$errorList=[];
+
 if(isset($_GET['key'])){
 
     if($session==$_GET['key']){
@@ -35,6 +37,9 @@ $transactions=Transaction::getAllTransactionsAccount($accountId);
 
 session_start();
 $errorList=$_SESSION['errorList'];
+
+$_SESSION['errorList']="";
+session_destroy();
 
 ?>
 
@@ -138,7 +143,7 @@ $errorList=$_SESSION['errorList'];
                                             <label for="describ" class="col-md-4 control-label">Description</label>
 
                                             <div class="col-md-6">
-                                                <textarea  type="text" class="form-control" name="describ" value="<?php echo $AccountInfo['describ']?>"></textarea>
+                                                <textarea  type="text" class="form-control" name="describ" value=""><?php echo $AccountInfo['describ']?></textarea>
 
                                             </div>
                                         </div>
@@ -165,13 +170,17 @@ OPTION;
                                             </div>
                                         </div>
 
-
-
                                         <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4">
+                                            <div class="col-md-3 col-md-offset-4">
                                                 <button type="submit" class="btn btn-primary" name="UpdateAccount">
                                                     <i class="fa fa-btn fa-sign-in"></i> Update Account
                                                 </button>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <a href="account.php" class="btn btn-primary">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Back
+                                                </a>
                                             </div>
                                         </div>
                                     </form>

@@ -9,13 +9,16 @@ use App\Model\Account;
 require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
+$errorList=[];
 
+if(isset($_GET['key'])){
+    if($session==$_GET['key']){
 
-if($session==$_GET['key']){
+    }else{
 
-}else{
-
+    }
 }
+
 $accountId=null;
 
 if(isset($_GET['account'])){
@@ -42,6 +45,9 @@ session_start();
 if(isset($_SESSION['errorList']))
     $errorList=$_SESSION['errorList'];
 
+$_SESSION['errorList']="";
+session_destroy();
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +66,7 @@ if(isset($_SESSION['errorList']))
 </head>
 
 <body>
-<div class="container">
+<div class="container" style="margin-top: 53px;">
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -160,10 +166,15 @@ if(isset($_SESSION['errorList']))
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="col-md-6 col-md-offset-4">
+                                            <div class="col-md-3 col-md-offset-4">
                                                 <button type="submit" class="btn btn-primary" name="UpdateItem">
                                                     <i class="fa fa-btn fa-sign-in"></i> Update Item
                                                 </button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="budgetsList.php" class="btn btn-primary">
+                                                    <i class="fa fa-btn fa-sign-in"></i> Back
+                                                </a>
                                             </div>
                                         </div>
                                     </form>

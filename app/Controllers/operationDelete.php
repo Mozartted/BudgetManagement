@@ -55,7 +55,7 @@ if(isset($_POST['DeleteItem'])){
 
 if(isset($_POST['DeleteTransact'])){
 
-    $account=$_GET['transaction'];
+    $account=$_GET['account'];
     $TransInfo=\App\Model\Transaction::getTransact($account);
     $idAccount=$TransInfo['account'];
     $status=\App\Model\Transaction::deleteTransact($account);

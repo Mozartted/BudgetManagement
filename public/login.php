@@ -70,7 +70,7 @@ if(isset($_POST['Login'])){
 <div class="main_profile_section">
 
   <!--Log In View-->
-  <div class="row container" style="margin-top:150px">
+  <div class="row container" style=" margin: auto; margin-top:200px; width: 700px;">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="modal-title"></div>

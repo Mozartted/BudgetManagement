@@ -8,7 +8,7 @@ require_once '../vendor/autoload.php';
 
 $session=SessionController::checkSessionKey();
 
-
+$errorList=[];
 
 if(isset($_GET['key'])){
 
@@ -121,8 +121,8 @@ $collectAccount=Account::getAllAccount();
                                                                         </div>
 
                                                                         <div class="col-md-6">
-                                                                            <form method="POST" action="../app/Controllers/operationDelete.php?transaction=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
-                                                                                 <input class="btn btn-danger" type="submit" value="Delete" name="DeleteTransact">
+                                                                            <form method="POST" action="../app/Controllers/operationDelete.php?account=$id" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Tb1joOhAxBhrqAhPk45HfAWgYbTRoNfbqjRD4P5y">
+                                                                                 <input class="btn btn-danger" type="submit" value="Delete" name="DeleteAccount">
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -161,7 +161,7 @@ OUTPUT;
                                 $name=$budget['name'];
                                 $balance=$budget['balance'];
                                 $output=<<<OUTPUT
-                                              <li><a href="$id">$name</a><p>$balance</p>
+                                              <li><a href="budgetview.php?budget=$id">$name</a><p>$balance</p>
                                 </li>
 OUTPUT;
                                 echo($output);

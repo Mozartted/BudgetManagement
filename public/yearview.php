@@ -65,7 +65,7 @@ $collectAccount=Account::getAllAccount();
 
 <!--creating profile section-->
 <div class="container">
-    <div class="row" style="margin-top:50px;">
+    <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <div id="generalTabContent" class="tab-content responsive">
