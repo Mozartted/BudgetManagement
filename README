@@ -1,12 +1,27 @@
-The Project is a Budget Management System
+#Budgetri
 
-Installation
-"""""""""""""""""""""""""""""""""""""""""""""""""
+Simple Budget Management System (no frameworks)
+
+##Introduction
+Budgetri is a simple budget management system meant to imitate that of a local goverment budget system.
+It implements a budget tracking. the systems has 4 tiers,
+* Accounts
+* Transactions
+* Budget Years
+* Budget Items
+
+The accounts keep track of money inputs and changes in value, and value chages with each transaction performed based on the transaction's type
+income or expense, Items on the budget year are being ticked off based on the transactions.
+
+Note: transactions can be performed on accounts without them being listed in the budget.
+
+#Installation
 In the Terminal, navigate to the Projects config folder and run the source command through mysql on the
 file finance.sql
 
 this would create a finance database with the following attributes.....
 
+```sql
 CREATE DATABASE finance;
 
 USE finance;
@@ -73,6 +88,8 @@ CREATE TABLE years(
 	date_end DATE DEFAULT NULL,
 	PRIMARY KEY(id)
 );
+
+```
 
 
 Step2:
